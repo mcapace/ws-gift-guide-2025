@@ -16,14 +16,32 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ['framer-motion', 'three', '@react-three/fiber', '@react-three/drei'],
   },
 
-  // Webpack configuration for advanced features
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /\.(glsl|vs|fs|vert|frag)$/,
-      use: ['raw-loader', 'glslify-loader'],
-    });
+  // Webpack configuration to fix React duplicate instances
+  webpack: (config, { isServer }) => {
+    // Ensure only one instance of React is used
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'react': require.resolve('react'),
+      'react-dom': require.resolve('react-dom'),
+    };
+
+    // Handle three.js and related packages properly
+    config.externals = config.externals || [];
+    if (!isServer) {
+      // Ensure three.js modules are properly handled on client-side
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        path: false,
+        stream: false,
+      };
+    }
+
     return config;
   },
+
+  // Transpile three.js packages for better compatibility
+  transpilePackages: ['three', '@react-three/fiber', '@react-three/drei'],
 };
 
 export default nextConfig;
