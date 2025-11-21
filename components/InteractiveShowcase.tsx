@@ -72,7 +72,7 @@ export default function InteractiveShowcase() {
             <span className="gradient-text">Vintages</span>
           </h2>
           <p className="text-xl text-neutral-silver max-w-2xl mx-auto">
-            Invest in history with these exceptional bottles from the world's greatest estates
+            Invest in history with these exceptional bottles from the world&apos;s greatest estates
           </p>
         </motion.div>
 

@@ -21,7 +21,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-neutral-silver mb-6 max-w-md">
-              The world's leading authority on wine, bringing you expert ratings, reviews,
+              The world&apos;s leading authority on wine, bringing you expert ratings, reviews,
               and recommendations since 1976.
             </p>
             <div className="flex space-x-4">

@@ -94,7 +94,7 @@ export default function NewsletterSection() {
               { icon: '🎁', text: 'Exclusive Offers' },
               { icon: '⭐', text: 'Expert Insights' },
               { icon: '🚀', text: 'Early Access' },
-            ].map((benefit, index) => (
+            ].map((benefit) => (
               <div
                 key={benefit.text}
                 className="flex flex-col items-center"
