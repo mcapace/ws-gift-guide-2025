@@ -166,17 +166,17 @@ export const SPONSORS: Sponsor[] = [
   {
     id: "sullivan-rutherford",
     name: "Sullivan Rutherford Estate",
-    tagline: "Heart of Rutherford",
+    tagline: "Celebrate the Season with a Top 100 Cabernet",
     region: "Rutherford, Napa Valley",
-    description: "PENDING - Awaiting copy from client",
-    url: "https://sullivanwine.com",
+    description: "Discover the 2021 Coeur de Vigne from Sullivan Rutherford Estate, an elegant, Old-World–inspired wine with savory depth, minerality, and refined structure. A versatile Napa Valley classic to enjoy now or cellar for years to come. Order by 12/19 for delivery by Christmas with shipping included.",
+    url: "https://sullivanwine.com/product/2021-coeur-de-vigne?utm_source=wine-spectator&utm_medium=referral&utm_campaign=holiday-co-op",
     social: {
       instagram: "https://instagram.com/sullivanrutherford"
     },
     promo: {
-      hasPromo: false,
-      code: null,
-      text: null
+      hasPromo: true,
+      code: "SULLIVAN",
+      text: "Free shipping included"
     },
     wineTypes: ["Cabernet Sauvignon"],
     images: {
