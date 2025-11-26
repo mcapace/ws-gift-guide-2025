@@ -12,7 +12,8 @@
   }
 
   ::selection {
-    @apply bg-wine-burgundy bg-opacity-20 text-wine-burgundy;
+    background-color: rgba(114, 47, 55, 0.2);
+    color: #722F37;
   }
 }
 
