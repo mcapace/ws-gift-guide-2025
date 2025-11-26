@@ -14,8 +14,7 @@ export function Footer() {
         />
 
         <p className="text-white/50 text-sm max-w-2xl mx-auto mb-8 leading-relaxed">
-          These offers are provided by Wine Spectator advertising partners. 
-          Wine Spectator receives compensation for featuring these promotions.
+          These offers are provided by Wine Spectator advertising partners.
         </p>
 
         <div className="w-16 h-px bg-white/20 mx-auto mb-8" />
@@ -41,4 +40,3 @@ export function Footer() {
     </footer>
   );
 }
-
