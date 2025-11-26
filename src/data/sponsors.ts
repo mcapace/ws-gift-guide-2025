@@ -90,6 +90,7 @@ export const SPONSORS: Sponsor[] = [
     wineTypes: ["Sparkling", "Chardonnay", "Cabernet Sauvignon"],
     images: {
       hero: "john-anthony-hero.jpg",
+      alt: "JAV Logo Lockup 2025 3k sq v3.png",
       logo: "john-anthony-logo.png"
     }
   },
