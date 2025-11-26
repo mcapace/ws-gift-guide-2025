@@ -126,7 +126,7 @@ export const SPONSORS: Sponsor[] = [
     },
     wineTypes: ["Cabernet Sauvignon", "Zinfandel", "White Blend"],
     images: {
-      hero: "calcareous-hero.jpg",
+      hero: "calcareous-hero.png",
       logo: "calcareous-logo.png"
     }
   },

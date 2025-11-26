@@ -6,10 +6,10 @@ import { shuffleArray } from "@/lib/utils";
 import { useMemo } from "react";
 
 export function SponsorGrid() {
-  // Filter out pending sponsors and shuffle them
+  // Filter out only Sullivan (pending copy), but show Loco Tequila placeholder
   const activeSponsors = useMemo(() => {
     const filtered = SPONSORS.filter(
-      (s) => !s.description.includes("PENDING")
+      (s) => s.id !== "sullivan-rutherford" // Only filter out Sullivan, show Loco Tequila placeholder
     );
     return shuffleArray(filtered);
   }, []);
