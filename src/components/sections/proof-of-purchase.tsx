@@ -79,7 +79,7 @@ export function ProofOfPurchase() {
   };
 
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-b from-white via-neutral-cream/30 to-neutral-cream relative">
+    <section id="proof-of-purchase" className="py-20 md:py-28 bg-gradient-to-b from-white via-neutral-cream/30 to-neutral-cream relative">
       {/* Subtle decorative element */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-champagne-gold/30 to-transparent" />
       <div className="max-w-4xl mx-auto px-6">
