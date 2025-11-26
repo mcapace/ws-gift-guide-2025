@@ -112,8 +112,8 @@ export const SPONSORS: Sponsor[] = [
     includedPerks: ["Custom gift box", "Tasting for two at ELLMAN Estate", "Added to mailing list"],
     wineTypes: ["Sauvignon Blanc", "Red Blend"],
     images: {
-      hero: "ellman-hero.png",
-      alt: "ellman-alt.jpg",
+      hero: "ellman-alt.jpg",
+      alt: "ellman-hero.png",
       logo: "ellman-logo.jpg"
     }
   },
