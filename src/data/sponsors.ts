@@ -42,8 +42,8 @@ export const SPONSORS: Sponsor[] = [
     },
     wineTypes: ["Pinot Noir", "Chardonnay"],
     images: {
-      hero: "domaine-serene-hero.jpg",
-      alt: "domaine-serene-alt.jpg",
+      hero: "domaine-serene-alt.jpg",
+      alt: "domaine-serene-hero.jpg",
       logo: "domaine-serene-logo.png"
     }
   },
