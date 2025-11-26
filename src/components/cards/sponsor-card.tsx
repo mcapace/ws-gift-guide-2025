@@ -57,9 +57,9 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
       className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 flex flex-col h-full"
       {...swipeHandlers}
     >
-      {/* Image Container - Larger Height */}
+      {/* Image Container - Larger Height for more image visibility */}
       <div
-        className="relative h-80 md:h-96 w-full overflow-hidden flex-shrink-0 touch-none"
+        className="relative h-96 md:h-[28rem] w-full overflow-hidden flex-shrink-0 touch-none"
         onMouseEnter={() => setImageHovered(true)}
         onMouseLeave={() => setImageHovered(false)}
       >
