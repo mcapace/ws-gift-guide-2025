@@ -372,7 +372,7 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
               />
             )}
             <span className="relative z-10 font-bold flex items-center gap-2">
-              {sponsor.id === "sullivan-rutherford" ? "Purchase Offer" : "Shop Now"}
+              Explore Offer
               <ExternalLink className="w-4 h-4 flex-shrink-0" />
             </span>
           </motion.a>
