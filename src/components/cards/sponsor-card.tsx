@@ -29,17 +29,37 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col h-full"
     >
-      {/* Image Container - Fixed Height */}
+      {/* Image Container - Fixed Height with Hover Swap */}
       <div className="relative h-64 w-full overflow-hidden flex-shrink-0">
+        {/* Main Hero Image */}
         <Image
           src={`/images/sponsors/${sponsor.images.hero}`}
           alt={sponsor.name}
           fill
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
+          className="object-cover transition-opacity duration-500 group-hover:opacity-0"
         />
+        
+        {/* Alt Image (shown on hover) */}
+        {sponsor.images.alt && (
+          <Image
+            src={`/images/sponsors/${sponsor.images.alt}`}
+            alt={`${sponsor.name} product`}
+            fill
+            className="absolute inset-0 object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+          />
+        )}
         
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        
+        {/* Hover Hint */}
+        {sponsor.images.alt && (
+          <div className="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <span className="text-xs text-white/80 bg-black/40 px-2 py-1 rounded backdrop-blur-sm">
+              Hover to see product
+            </span>
+          </div>
+        )}
         
         {/* Logo Overlay - Fixed Size Container with better centering */}
         <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-3 shadow-lg flex items-center justify-center">
@@ -53,6 +73,14 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
             />
           </div>
         </div>
+        
+        {/* Image Indicator Dots */}
+        {sponsor.images.alt && (
+          <div className="absolute bottom-4 right-4 flex gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-white group-hover:bg-white/50 transition-colors" />
+            <span className="w-2 h-2 rounded-full bg-white/50 group-hover:bg-white transition-colors" />
+          </div>
+        )}
         
         {/* Special Offer Badge */}
         {sponsor.promo.hasPromo && (

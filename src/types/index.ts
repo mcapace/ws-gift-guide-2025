@@ -15,6 +15,7 @@ export interface Sponsor {
   wineTypes: string[];
   images: {
     hero: string;
+    alt?: string;
     logo: string;
   };
 }

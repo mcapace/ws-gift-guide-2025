@@ -16,6 +16,7 @@ export const SPONSORS: Sponsor[] = [
     wineTypes: ["Cabernet Sauvignon"],
     images: {
       hero: "silver-oak-hero.jpg",
+      alt: "silver-oak-alt.jpg",
       logo: "silver-oak-logo.png"
     }
   },
@@ -34,6 +35,7 @@ export const SPONSORS: Sponsor[] = [
     wineTypes: ["Pinot Noir", "Chardonnay"],
     images: {
       hero: "domaine-serene-hero.jpg",
+      alt: "domaine-serene-alt.jpg",
       logo: "domaine-serene-logo.png"
     }
   },
@@ -52,6 +54,7 @@ export const SPONSORS: Sponsor[] = [
     wineTypes: ["Sparkling", "Pinot Noir", "Chardonnay"],
     images: {
       hero: "jcb-hero.jpg",
+      alt: "jcb-alt.png",
       logo: "jcb-logo.png"
     }
   },
@@ -91,6 +94,7 @@ export const SPONSORS: Sponsor[] = [
     wineTypes: ["Sauvignon Blanc", "Red Blend"],
     images: {
       hero: "ellman-hero.png",
+      alt: "ellman-alt.jpg",
       logo: "ellman-logo.jpg"
     }
   },
@@ -109,6 +113,7 @@ export const SPONSORS: Sponsor[] = [
     wineTypes: ["Pinot Noir", "Chardonnay", "Syrah"],
     images: {
       hero: "copain-hero.jpg",
+      alt: "copain-alt.jpg",
       logo: "copain-logo.png"
     }
   },
@@ -127,6 +132,7 @@ export const SPONSORS: Sponsor[] = [
     wineTypes: ["Cabernet Sauvignon", "Zinfandel", "White Blend"],
     images: {
       hero: "calcareous-hero.png",
+      alt: "calcareous-alt.png",
       logo: "calcareous-logo.png"
     }
   },
