@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
       const receiptBase64 = Buffer.from(receiptBuffer).toString("base64");
 
       await resend.emails.send({
-        from: "Wine Spectator Gift Guide <noreply@winespectator.com>",
+        from: "Wine Spectator Gift Guide <noreply@thanksgiving.winespectator.com>",
         to: RECIPIENT_EMAIL,
         subject: `Proof of Purchase Submission - ${winery}`,
         html: `
