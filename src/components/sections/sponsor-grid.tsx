@@ -2,12 +2,17 @@
 
 import { SPONSORS } from "@/data/sponsors";
 import { SponsorCard } from "@/components/cards/sponsor-card";
+import { shuffleArray } from "@/lib/utils";
+import { useMemo } from "react";
 
 export function SponsorGrid() {
-  // Filter out pending sponsors
-  const activeSponsors = SPONSORS.filter(
-    (s) => !s.description.includes("PENDING")
-  );
+  // Filter out pending sponsors and shuffle them
+  const activeSponsors = useMemo(() => {
+    const filtered = SPONSORS.filter(
+      (s) => !s.description.includes("PENDING")
+    );
+    return shuffleArray(filtered);
+  }, []);
 
   return (
     <section id="sponsors" className="py-20 md:py-28 bg-neutral-cream">
