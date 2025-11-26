@@ -46,7 +46,7 @@ export function Header() {
             }`}
           >
             <span className="hidden sm:inline">Claim 3 Months Free</span>
-            <span className="sm:hidden">Claim Free</span>
+            <span className="sm:hidden">3 Months Free</span>
           </button>
           {scrolled && (
             <button
