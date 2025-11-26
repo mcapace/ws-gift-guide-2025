@@ -147,6 +147,24 @@ export const SPONSORS: Sponsor[] = [
       hero: "sullivan-hero.jpg",
       logo: "sullivan-logo.png"
     }
+  },
+  {
+    id: "loco-tequila",
+    name: "Loco Tequila",
+    tagline: "PENDING",
+    region: "PENDING",
+    description: "PENDING - Awaiting creative assets and copy from client",
+    url: "PENDING",
+    promo: {
+      hasPromo: false,
+      code: null,
+      text: null
+    },
+    wineTypes: ["Tequila"],
+    images: {
+      hero: "loco-tequila-hero.jpg",
+      logo: "loco-tequila-logo.png"
+    }
   }
 ];
 
@@ -162,9 +180,8 @@ export const PAGE_CONFIG = {
   },
   colors: {
     primary: "#722F37",
-    secondary: "#C9A962",
+    secondary: "C9A962",
     accent: "#1C1C1C",
     background: "#FDFBF7"
   }
 };
-
