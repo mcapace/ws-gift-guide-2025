@@ -25,6 +25,29 @@ html {
 
 body {
   -webkit-font-smoothing: antialiased;
+  background: linear-gradient(to bottom, #FDFBF7 0%, #FAF8F3 100%);
+  background-attachment: fixed;
+}
+
+/* Subtle texture overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(201, 169, 98, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(114, 47, 55, 0.02) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ensure content is above the texture */
+main {
+  position: relative;
+  z-index: 1;
 }
 
 /* Shop Now Button - Gold by default, darker gold on hover */

@@ -13,7 +13,9 @@ export function SponsorGrid() {
   }, []);
 
   return (
-    <section id="sponsors" className="py-20 md:py-28 bg-neutral-cream">
+    <section id="sponsors" className="py-20 md:py-28 bg-gradient-to-b from-neutral-cream via-white/50 to-neutral-cream relative">
+      {/* Subtle decorative element */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-champagne-gold/30 to-transparent" />
       <div className="max-w-6xl mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -27,7 +29,9 @@ export function SponsorGrid() {
 
         {/* Introductory Blurb */}
         <div className="max-w-4xl mx-auto mb-16 text-center">
-          <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-champagne-gold/20 shadow-sm">
+          <div className="bg-gradient-to-br from-white/80 via-white/70 to-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-champagne-gold/20 shadow-lg relative overflow-hidden">
+            {/* Subtle gold accent */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-champagne-gold/40 to-transparent" />
             <p className="font-body text-base md:text-lg text-neutral-charcoal leading-relaxed mb-4">
               This holiday season, give the gift of exceptional wine and spirits. We've partnered with some of the world's most celebrated wineries and distilleries to bring you exclusive offers on premium selections, limited editions, and curated gift sets.
             </p>

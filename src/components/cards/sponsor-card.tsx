@@ -54,7 +54,7 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       whileHover={{ y: -8 }}
-      className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 flex flex-col h-full"
+      className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 flex flex-col h-full border border-white/50 hover:border-champagne-gold/20"
       {...swipeHandlers}
     >
       {/* Image Container - Larger Height */}

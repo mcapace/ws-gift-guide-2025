@@ -79,15 +79,20 @@ export function ProofOfPurchase() {
   };
 
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-b from-neutral-cream to-white">
+    <section className="py-20 md:py-28 bg-gradient-to-b from-white via-neutral-cream/30 to-neutral-cream relative">
+      {/* Subtle decorative element */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-champagne-gold/30 to-transparent" />
       <div className="max-w-4xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-champagne-gold/20"
+          className="bg-gradient-to-br from-white via-white/95 to-white rounded-2xl shadow-xl p-8 md:p-12 border border-champagne-gold/20 relative overflow-hidden"
         >
+          {/* Subtle gold accent */}
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-champagne-gold/40 to-transparent" />
+          
           {/* Header */}
           <div className="text-center mb-8">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-wine-burgundy mb-4">
