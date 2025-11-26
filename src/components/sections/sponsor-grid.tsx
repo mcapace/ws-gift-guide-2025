@@ -22,7 +22,7 @@ export function SponsorGrid() {
           <h2 className="font-display text-4xl md:text-5xl font-bold text-wine-burgundy mb-4">
             Featured Partners
           </h2>
-          <p className="text-neutral-slate text-lg max-w-2xl mx-auto">
+          <p className="text-neutral-slate text-lg max-w-3xl mx-auto">
             Discover exclusive holiday offers from our curated selection of premium partners
           </p>
         </div>
