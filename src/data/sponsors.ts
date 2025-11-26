@@ -188,18 +188,18 @@ export const SPONSORS: Sponsor[] = [
   {
     id: "loco-tequila",
     name: "Loco Tequila",
-    tagline: "PENDING",
-    region: "PENDING",
-    description: "PENDING - Awaiting creative assets and copy from client",
-    url: "https://loco-tequila.com",
+    tagline: "What every host wants: Loco Ámbar",
+    region: "Mexico",
+    description: "Complex, sophisticated and agave forward, Loco Ámbar is a masterful blend of four rare casks aged 6-13 months. Enjoy as a sipping spirit, alone or paired with a wide range of grilled foods and with chocolate or caramel desserts. Use code \"LOCOWS\" for complimentary 2-day shipping, exp 12/31/25.",
+    url: "https://store.loco-tequila.com/products/loco-ambar-reposado?utm_source=wine-spectator&utm_medium=referral&utm_campaign=holiday-co-op",
     social: {
       instagram: "https://instagram.com/locotequilamx",
       facebook: "https://facebook.com/LocoTequila"
     },
     promo: {
-      hasPromo: false,
-      code: null,
-      text: null
+      hasPromo: true,
+      code: "LOCOWS",
+      text: "Complimentary 2-day shipping, exp 12/31/25"
     },
     wineTypes: ["Tequila"],
     images: {
