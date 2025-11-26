@@ -135,8 +135,8 @@ export const SPONSORS: Sponsor[] = [
     },
     wineTypes: ["Pinot Noir", "Chardonnay", "Syrah"],
     images: {
-      hero: "copain-hero.jpg",
-      alt: "copain-alt.jpg",
+      hero: "copain-alt.jpg",
+      alt: "copain-hero.jpg",
       logo: "copain-logo.png"
     }
   },
