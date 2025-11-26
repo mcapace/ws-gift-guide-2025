@@ -87,14 +87,14 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
         </div>
 
         {/* Description - Fixed Height with consistent spacing */}
-        <div className="mb-5 flex-grow min-h-[72px]">
+        <div className="mb-5 h-20 flex items-start">
           <p className="text-neutral-charcoal text-base leading-relaxed line-clamp-3">
             {sponsor.description}
           </p>
         </div>
 
         {/* Wine Types - Fixed Height */}
-        <div className="h-auto mb-5 min-h-[32px] flex items-start">
+        <div className="h-10 mb-5 flex items-center">
           <div className="flex flex-wrap gap-2">
             {sponsor.wineTypes.map((type) => (
               <span
@@ -108,40 +108,44 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
           </div>
         </div>
 
-        {/* Promo Box - Consistent spacing */}
-        {sponsor.promo.hasPromo && (
-          <div className="mb-5 p-4 bg-champagne-gold/10 border border-champagne-gold/30 rounded-xl min-h-[60px]">
-            {sponsor.promo.code && (
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-medium text-neutral-slate uppercase tracking-wide">
-                  Promo Code
-                </span>
-                <button
-                  onClick={() => copyCode(sponsor.promo.code!)}
-                  className="flex items-center gap-1 text-xs text-champagne-gold-dark hover:text-wine-burgundy transition-colors"
-                >
-                  {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
-                  {copied ? "Copied!" : "Copy"}
-                </button>
-              </div>
-            )}
-            {sponsor.promo.code && (
-              <p className="font-mono text-lg font-bold text-wine-burgundy mb-2">
-                {sponsor.promo.code}
-              </p>
-            )}
-            {sponsor.promo.text && (
-              <p className="text-sm text-neutral-charcoal">
-                {sponsor.promo.text}
-              </p>
-            )}
-          </div>
-        )}
+        {/* Promo Box - Always reserve space, show if exists */}
+        <div className="mb-5 min-h-[80px] flex items-start">
+          {sponsor.promo.hasPromo ? (
+            <div className="w-full p-4 bg-champagne-gold/10 border border-champagne-gold/30 rounded-xl">
+              {sponsor.promo.code && (
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-medium text-neutral-slate uppercase tracking-wide">
+                    Promo Code
+                  </span>
+                  <button
+                    onClick={() => copyCode(sponsor.promo.code!)}
+                    className="flex items-center gap-1 text-xs text-champagne-gold-dark hover:text-wine-burgundy transition-colors"
+                  >
+                    {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                    {copied ? "Copied!" : "Copy"}
+                  </button>
+                </div>
+              )}
+              {sponsor.promo.code && (
+                <p className="font-mono text-lg font-bold text-wine-burgundy mb-2">
+                  {sponsor.promo.code}
+                </p>
+              )}
+              {sponsor.promo.text && (
+                <p className="text-sm text-neutral-charcoal">
+                  {sponsor.promo.text}
+                </p>
+              )}
+            </div>
+          ) : (
+            <div className="w-full" />
+          )}
+        </div>
 
-        {/* Perks - Fixed Height */}
-        {sponsor.includedPerks && (
-          <div className="mb-5 min-h-[60px]">
-            <ul className="space-y-1">
+        {/* Perks - Always reserve space, show if exists */}
+        <div className="mb-5 min-h-[60px] flex items-start">
+          {sponsor.includedPerks && sponsor.includedPerks.length > 0 ? (
+            <ul className="w-full space-y-1">
               {sponsor.includedPerks.map((perk) => (
                 <li key={perk} className="text-sm text-neutral-slate flex items-center gap-2">
                   <span className="text-champagne-gold flex-shrink-0">✦</span>
@@ -149,19 +153,23 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
                 </li>
               ))}
             </ul>
-          </div>
-        )}
+          ) : (
+            <div className="w-full" />
+          )}
+        </div>
 
-        {/* Price - Fixed Height */}
-        {sponsor.price && (
-          <div className="h-8 mb-5 flex items-center">
+        {/* Price - Always reserve space, show if exists */}
+        <div className="h-8 mb-5 flex items-center">
+          {sponsor.price ? (
             <p className="text-2xl font-bold text-wine-burgundy">
               {sponsor.price}
             </p>
-          </div>
-        )}
+          ) : (
+            <div className="w-full" />
+          )}
+        </div>
 
-        {/* CTA - Always at bottom */}
+        {/* CTA - Always at bottom with consistent spacing */}
         <div className="mt-auto pt-2">
           <Link
             href={sponsor.url}
