@@ -156,7 +156,7 @@ export const SPONSORS: Sponsor[] = [
       code: null,
       text: "$15 flat rate shipping"
     },
-    wineTypes: ["Cabernet Sauvignon", "Zinfandel", "White Blend"],
+    wineTypes: ["Cabernet Sauvignon", "Syrah", "White Blend"],
     images: {
       hero: "calcareous-hero.png",
       alt: "calcareous-alt.png",
