@@ -77,14 +77,14 @@ export function Hero() {
           Holiday Gift Guide
         </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="font-accent text-2xl md:text-3xl text-champagne-gold mb-4"
-        >
-          2025
-        </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="font-accent text-4xl md:text-5xl lg:text-6xl text-champagne-gold mb-4"
+            >
+              2025
+            </motion.p>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
