@@ -57,7 +57,7 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
       className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 flex flex-col h-full"
       {...swipeHandlers}
     >
-      {/* Image Container - Larger Height for more image visibility */}
+      {/* Image Container - Larger Height */}
       <div
         className="relative h-96 md:h-[28rem] w-full overflow-hidden flex-shrink-0 touch-none"
         onMouseEnter={() => setImageHovered(true)}
@@ -273,7 +273,7 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
           )}
         </div>
 
-        {/* CTA - Festive Red/Gold/White with direct inline styles */}
+        {/* CTA - Festive Red/Gold/White */}
         <div className="mt-auto pt-2">
           <motion.a
             href={sponsor.url}
@@ -283,17 +283,8 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
             onMouseLeave={() => setButtonHovered(false)}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="relative flex items-center justify-center gap-2 w-full py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg overflow-hidden"
-            style={{
-              background: buttonHovered
-                ? "linear-gradient(to right, #C9A962, #A68B4B, #C9A962)"
-                : "linear-gradient(to right, #722F37, #5A252C, #722F37)",
-              color: buttonHovered ? "#1C1C1C" : "#FFFFFF",
-              border: `2px solid ${buttonHovered ? "#C9A962" : "#FFFFFF"}`,
-              boxShadow: buttonHovered
-                ? "0 20px 25px -5px rgba(201, 169, 98, 0.3), 0 10px 10px -5px rgba(201, 169, 98, 0.2)"
-                : "0 10px 15px -3px rgba(114, 47, 55, 0.3), 0 4px 6px -2px rgba(114, 47, 55, 0.2)",
-            }}
+            data-hovered={buttonHovered}
+            className="shop-now-btn relative flex items-center justify-center gap-2 w-full py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg overflow-hidden"
           >
             {/* Shimmer effect */}
             {buttonHovered && (

@@ -27,15 +27,16 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Shop Now Button - Festive Red/Gold/White */
-.shop-now-button {
-  background: linear-gradient(to right, #722F37, #5A252C, #722F37);
-  color: #FFFFFF;
-  border-color: #FFFFFF;
+/* Shop Now Button - Force colors with high specificity */
+.shop-now-btn {
+  background: linear-gradient(to right, #722F37, #5A252C, #722F37) !important;
+  color: #FFFFFF !important;
+  border: 2px solid #FFFFFF !important;
 }
 
-.shop-now-button:hover {
-  background: linear-gradient(to right, #C9A962, #A68B4B, #C9A962);
-  color: #1C1C1C;
-  border-color: #C9A962;
+.shop-now-btn:hover,
+.shop-now-btn[data-hovered="true"] {
+  background: linear-gradient(to right, #C9A962, #A68B4B, #C9A962) !important;
+  color: #1C1C1C !important;
+  border: 2px solid #C9A962 !important;
 }
