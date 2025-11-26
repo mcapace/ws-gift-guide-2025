@@ -3,7 +3,8 @@
 import { SPONSORS } from "@/data/sponsors";
 import { SponsorCard } from "@/components/cards/sponsor-card";
 import { shuffleArray } from "@/lib/utils";
-import { useMemo } from "react";
+import { useMemo, useState, Suspense } from "react";
+import { CardSkeleton } from "@/components/ui/skeleton";
 
 export function SponsorGrid() {
   // Filter out only Sullivan (pending copy), but show Loco Tequila placeholder
@@ -39,12 +40,22 @@ export function SponsorGrid() {
           </div>
         </div>
 
-        {/* Grid - Equal height cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 auto-rows-fr">
-          {activeSponsors.map((sponsor, index) => (
-            <SponsorCard key={sponsor.id} sponsor={sponsor} index={index} />
-          ))}
-        </div>
+        {/* Grid - Equal height cards with loading states */}
+        <Suspense
+          fallback={
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+              {[...Array(6)].map((_, i) => (
+                <CardSkeleton key={i} />
+              ))}
+            </div>
+          }
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 auto-rows-fr">
+            {activeSponsors.map((sponsor, index) => (
+              <SponsorCard key={sponsor.id} sponsor={sponsor} index={index} />
+            ))}
+          </div>
+        </Suspense>
       </div>
     </section>
   );

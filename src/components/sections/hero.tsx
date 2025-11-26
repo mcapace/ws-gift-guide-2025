@@ -1,32 +1,51 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 
 export function Hero() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
+  const y = useTransform(scrollYProgress, [0, 0.5], [0, 100]);
+
   const scrollToSponsors = () => {
     document.getElementById("sponsors")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden">
-      {/* Video Background */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
+    <section ref={containerRef} className="relative h-screen w-full overflow-hidden">
+      {/* Video Background with Parallax */}
+      <motion.div
+        style={{ scale: useTransform(scrollYProgress, [0, 1], [1, 1.1]) }}
+        className="absolute inset-0"
       >
-        <source src="/videos/hero-video.mp4" type="video/mp4" />
-      </video>
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/videos/hero-video.mp4" type="video/mp4" />
+        </video>
+      </motion.div>
 
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
 
-      {/* Content */}
-      <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+      {/* Content with Parallax */}
+      <motion.div
+        style={{ opacity, scale, y }}
+        className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6"
+      >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -80,10 +99,13 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           onClick={scrollToSponsors}
-          className="px-8 py-4 border-2 border-champagne-gold text-champagne-gold rounded-lg font-medium hover:bg-champagne-gold hover:text-neutral-black transition-all duration-300"
+          className="px-8 py-4 border-2 border-champagne-gold text-champagne-gold rounded-lg font-medium hover:bg-champagne-gold hover:text-neutral-black transition-all duration-300 relative overflow-hidden group"
         >
-          Explore Partner Offers
+          <span className="relative z-10">Explore Partner Offers</span>
+          <span className="absolute inset-0 bg-champagne-gold transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
         </motion.button>
 
         {/* Scroll Indicator */}
@@ -93,11 +115,16 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 1 }}
           className="absolute bottom-12 left-1/2 -translate-x-1/2"
         >
-          <button onClick={scrollToSponsors} className="text-white/60 hover:text-white animate-bounce">
+          <motion.button
+            onClick={scrollToSponsors}
+            className="text-white/60 hover:text-white"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
             <ChevronDown className="w-8 h-8" />
-          </button>
+          </motion.button>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }
