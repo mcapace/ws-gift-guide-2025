@@ -29,7 +29,7 @@ export function SponsorGrid() {
               This holiday season, give the gift of exceptional wine and spirits. We've partnered with some of the world's most celebrated wineries and distilleries to bring you exclusive offers on premium selections, limited editions, and curated gift sets.
             </p>
             <p className="font-body text-base md:text-lg text-neutral-slate leading-relaxed">
-              From Napa Valley Cabernets to Willamette Valley Pinot Noirs, and from artisanal spirits to rare vintages, discover the perfect bottle or collection for the wine and spirits enthusiast in your life. Each partner offers special promotions, complimentary tastings, and beautifully packaged gift options to make your holiday shopping effortless.
+              From Napa Valley Cabernets to Willamette Valley Pinot Noirs, and from artisanal spirits to rare vintages, discover the perfect bottle or collection for your loved ones. Each partner offers special promotions, complimentary tastings, and beautifully packaged gift options to make your holiday shopping effortless.
             </p>
           </div>
         </div>
