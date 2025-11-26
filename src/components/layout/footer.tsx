@@ -23,19 +23,19 @@ export function Footer() {
           © 2025 Wine Spectator. All rights reserved.
         </p>
 
-        <div className="flex items-center justify-center gap-6 text-sm">
-          <Link href="https://www.winespectator.com/privacy" className="text-white/40 hover:text-white/70 transition-colors">
-            Privacy Policy
-          </Link>
-          <span className="text-white/20">|</span>
-          <Link href="https://www.winespectator.com/terms" className="text-white/40 hover:text-white/70 transition-colors">
-            Terms of Use
-          </Link>
-          <span className="text-white/20">|</span>
-          <Link href="https://www.winespectator.com/contact" className="text-white/40 hover:text-white/70 transition-colors">
-            Contact
-          </Link>
-        </div>
+            <div className="flex items-center justify-center gap-6 text-sm">
+              <Link href="https://www.winespectator.com/pages/privacy-policy" className="text-white/40 hover:text-white/70 transition-colors">
+                Privacy Policy
+              </Link>
+              <span className="text-white/20">|</span>
+              <Link href="https://www.winespectator.com/pages/terms-of-service" className="text-white/40 hover:text-white/70 transition-colors">
+                Terms of Service
+              </Link>
+              <span className="text-white/20">|</span>
+              <Link href="https://help.winespectator.com/support/home" className="text-white/40 hover:text-white/70 transition-colors">
+                Contact Us
+              </Link>
+            </div>
       </div>
     </footer>
   );
