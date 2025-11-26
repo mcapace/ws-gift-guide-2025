@@ -103,7 +103,6 @@ export const SPONSORS: Sponsor[] = [
     social: {
       instagram: "https://instagram.com/ellmanwine"
     },
-    price: "$575",
     promo: {
       hasPromo: true,
       code: null,
