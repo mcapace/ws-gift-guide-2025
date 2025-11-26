@@ -46,19 +46,19 @@ export function Hero() {
         style={{ opacity, scale, y }}
         className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6"
       >
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <Image
-            src="/images/wine-spectator-logo-white.png"
-            alt="Wine Spectator"
-            width={200}
-            height={40}
-            className="mx-auto mb-8 h-10 w-auto"
-          />
-        </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <Image
+                src="/images/wine-spectator-logo-white.png"
+                alt="Wine Spectator"
+                width={300}
+                height={60}
+                className="mx-auto mb-8 h-16 md:h-20 w-auto"
+              />
+            </motion.div>
 
         {/* Gold Divider */}
         <motion.div
