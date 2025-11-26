@@ -23,7 +23,7 @@ export function SponsorGrid() {
             Featured Partners
           </h2>
           <p className="text-neutral-slate text-lg max-w-2xl mx-auto">
-            Discover exclusive holiday offers from our curated selection of premium wine partners
+            Discover exclusive holiday offers from our curated selection of premium partners
           </p>
         </div>
 
