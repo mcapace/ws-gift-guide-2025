@@ -76,7 +76,7 @@ export const SPONSORS: Sponsor[] = [
     tagline: "Two Decades of 90+ Point Wines",
     region: "Napa Valley",
     description: "Next-generation Napa Valley Vintner John Anthony Truchard celebrates two decades of 90Pt plus wines with this spectacular Holiday presentation trio of signature Sparkling, Reserve Chardonnay, and Cabernet Sauvignon.",
-    url: "https://www.johnanthonyvineyards.com/product/SpectacularTRIO2025",
+    url: "https://www.johnanthonyvineyards.com/product/SpectacularTRIO2025?utm_source=giftguide&utm_medium=referral&utm_campaign=_&utm_content=",
     social: {
       instagram: "https://instagram.com/johnanthonyvineyards",
       facebook: "https://facebook.com/JohnAnthonyVineyards"
