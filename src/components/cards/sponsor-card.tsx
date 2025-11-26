@@ -18,6 +18,7 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [ripple, setRipple] = useState<{ x: number; y: number } | null>(null);
   const [showAltImage, setShowAltImage] = useState(false);
+  const [buttonHovered, setButtonHovered] = useState(false);
 
   const swipeHandlers = useSwipe({
     onSwipeLeft: () => {
@@ -259,26 +260,42 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
           )}
         </div>
 
-        {/* CTA - Festive Red/Gold/White with CSS custom properties */}
+        {/* CTA - Festive Red/Gold/White with direct inline styles */}
         <div className="mt-auto pt-2">
-          <Link
+          <motion.a
             href={sponsor.url}
             target="_blank"
             rel="noopener noreferrer sponsored"
-            className="shop-now-button relative flex items-center justify-center gap-2 w-full py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl border-2 overflow-hidden group"
+            onMouseEnter={() => setButtonHovered(true)}
+            onMouseLeave={() => setButtonHovered(false)}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="relative flex items-center justify-center gap-2 w-full py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg overflow-hidden"
+            style={{
+              background: buttonHovered
+                ? "linear-gradient(to right, #C9A962, #A68B4B, #C9A962)"
+                : "linear-gradient(to right, #722F37, #5A252C, #722F37)",
+              color: buttonHovered ? "#1C1C1C" : "#FFFFFF",
+              border: `2px solid ${buttonHovered ? "#C9A962" : "#FFFFFF"}`,
+              boxShadow: buttonHovered
+                ? "0 20px 25px -5px rgba(201, 169, 98, 0.3), 0 10px 10px -5px rgba(201, 169, 98, 0.2)"
+                : "0 10px 15px -3px rgba(114, 47, 55, 0.3), 0 4px 6px -2px rgba(114, 47, 55, 0.2)",
+            }}
           >
             {/* Shimmer effect */}
-            <motion.span
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-              initial={{ x: "-100%" }}
-              whileHover={{ x: "200%" }}
-              transition={{ duration: 0.8, repeat: Infinity, repeatDelay: 2 }}
-            />
+            {buttonHovered && (
+              <motion.span
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                initial={{ x: "-100%" }}
+                animate={{ x: "200%" }}
+                transition={{ duration: 0.8, repeat: Infinity, repeatDelay: 2 }}
+              />
+            )}
             <span className="relative z-10 font-bold flex items-center gap-2">
               Shop Now
               <ExternalLink className="w-4 h-4 flex-shrink-0" />
             </span>
-          </Link>
+          </motion.a>
         </div>
       </div>
     </motion.article>
