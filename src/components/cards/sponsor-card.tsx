@@ -135,37 +135,37 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
 
       {/* Content - Flex grow to fill space */}
       <div className="p-7 flex flex-col flex-grow">
-        {/* Tagline - Fixed Height */}
-        <div className="h-7 mb-2 flex items-center">
-          <p className="font-accent text-base italic text-champagne-gold-dark line-clamp-1">
+        {/* Tagline - Allow full text */}
+        <div className="mb-2 flex items-center min-h-[28px]">
+          <p className="font-accent text-base italic text-champagne-gold-dark">
             {sponsor.tagline}
           </p>
         </div>
 
-        {/* Name - Fixed Height */}
-        <div className="h-10 mb-2 flex items-center">
-          <h3 className="font-display text-2xl font-bold text-wine-burgundy line-clamp-1">
+        {/* Name - Allow full text */}
+        <div className="mb-2 flex items-center min-h-[40px]">
+          <h3 className="font-display text-2xl font-bold text-wine-burgundy">
             {sponsor.name}
           </h3>
         </div>
 
-        {/* Region - Fixed Height */}
-        <div className="h-6 mb-4 flex items-center">
+        {/* Region - Allow full text */}
+        <div className="mb-4 flex items-center min-h-[24px]">
           <div className="flex items-center gap-1.5 text-neutral-slate text-sm">
             <MapPin className="w-4 h-4 flex-shrink-0" />
-            <span className="line-clamp-1">{sponsor.region}</span>
+            <span>{sponsor.region}</span>
           </div>
         </div>
 
-        {/* Description - Fixed Height with consistent spacing */}
-        <div className="mb-5 h-20 flex items-start">
-          <p className="text-neutral-charcoal text-base leading-relaxed line-clamp-3">
+        {/* Description - Allow full text, flexible height */}
+        <div className="mb-5 flex items-start min-h-[60px]">
+          <p className="text-neutral-charcoal text-base leading-relaxed">
             {sponsor.description}
           </p>
         </div>
 
-        {/* Wine Types - Fixed Height */}
-        <div className="h-10 mb-5 flex items-center">
+        {/* Wine Types - Flexible height */}
+        <div className="mb-5 flex items-center min-h-[32px]">
           <div className="flex flex-wrap gap-2">
             {sponsor.wineTypes.map((type) => (
               <motion.span
@@ -240,7 +240,7 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
                   className="text-sm text-neutral-slate flex items-center gap-2"
                 >
                   <span className="text-champagne-gold flex-shrink-0">✦</span>
-                  <span className="line-clamp-1">{perk}</span>
+                  <span>{perk}</span>
                 </motion.li>
               ))}
             </ul>
