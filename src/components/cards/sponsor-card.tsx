@@ -265,13 +265,14 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
             href={sponsor.url}
             target="_blank"
             rel="noopener noreferrer sponsored"
-            className="relative flex items-center justify-center gap-2 w-full py-4 bg-gradient-to-r from-wine-burgundy via-wine-burgundy-dark to-wine-burgundy text-white rounded-xl font-semibold hover:from-champagne-gold hover:via-champagne-gold-dark hover:to-champagne-gold hover:text-neutral-black transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-white/20 hover:border-champagne-gold/50 overflow-hidden group"
+            className="relative flex items-center justify-center gap-2 w-full py-4 bg-gradient-to-r from-wine-burgundy via-wine-burgundy-dark to-wine-burgundy text-white rounded-xl font-semibold hover:from-champagne-gold hover:via-champagne-gold-dark hover:to-champagne-gold hover:text-neutral-black transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-white hover:border-champagne-gold overflow-hidden group"
           >
+            {/* Shimmer effect */}
             <motion.span
-              className="absolute inset-0 bg-white/20"
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
               initial={{ x: "-100%" }}
-              whileHover={{ x: "100%" }}
-              transition={{ duration: 0.6 }}
+              whileHover={{ x: "200%" }}
+              transition={{ duration: 0.8, repeat: Infinity, repeatDelay: 2 }}
             />
             <span className="relative z-10 font-bold flex items-center gap-2">
               Shop Now
