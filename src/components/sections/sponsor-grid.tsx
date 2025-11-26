@@ -1,22 +1,33 @@
 "use client";
 
+import Masonry from 'react-masonry-css';
 import { SPONSORS } from "@/data/sponsors";
 import { SponsorCard } from "@/components/cards/sponsor-card";
 import { shuffleArray } from "@/lib/utils";
-import { useMemo, useState, Suspense } from "react";
-import { CardSkeleton } from "@/components/ui/skeleton";
+import { useState, useEffect } from "react";
 
 export function SponsorGrid() {
-  // Show all sponsors (including Sullivan Rutherford and Loco Tequila placeholders)
-  const activeSponsors = useMemo(() => {
-    return shuffleArray(SPONSORS);
+  // Shuffle only on client-side to avoid hydration mismatch
+  // Start with unshuffled array for SSR, then shuffle on client
+  const [activeSponsors, setActiveSponsors] = useState<typeof SPONSORS>(SPONSORS);
+
+  useEffect(() => {
+    // Shuffle on client-side only after mount
+    setActiveSponsors(shuffleArray(SPONSORS));
   }, []);
+
+  const breakpointColumns = {
+    default: 3, // 3 columns on large screens for more staggering
+    1280: 3,
+    1024: 2,
+    768: 1
+  };
 
   return (
     <section id="sponsors" className="py-20 md:py-28 bg-gradient-to-b from-neutral-cream via-white/50 to-neutral-cream relative">
       {/* Subtle decorative element */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-champagne-gold/30 to-transparent" />
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="font-display text-4xl md:text-5xl font-bold text-wine-burgundy mb-4">
@@ -41,22 +52,18 @@ export function SponsorGrid() {
           </div>
         </div>
 
-        {/* Grid - Equal height cards with loading states */}
-        <Suspense
-          fallback={
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-              {[...Array(6)].map((_, i) => (
-                <CardSkeleton key={i} />
-              ))}
-            </div>
-          }
+        {/* Masonry Grid - More pronounced staggering */}
+        <Masonry
+          breakpointCols={breakpointColumns}
+          className="flex -ml-4 w-auto"
+          columnClassName="pl-4 bg-clip-padding"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 auto-rows-fr">
-            {activeSponsors.map((sponsor, index) => (
-              <SponsorCard key={sponsor.id} sponsor={sponsor} index={index} />
-            ))}
-          </div>
-        </Suspense>
+          {activeSponsors.map((sponsor, index) => (
+            <div key={sponsor.id} className="mb-4">
+              <SponsorCard sponsor={sponsor} index={index} />
+            </div>
+          ))}
+        </Masonry>
       </div>
     </section>
   );

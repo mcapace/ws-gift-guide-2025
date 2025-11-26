@@ -51,6 +51,16 @@ main {
   z-index: 1;
 }
 
+/* Masonry layout support */
+.masonry-grid {
+  display: flex;
+  width: auto;
+}
+
+.masonry-column {
+  background-clip: padding-box;
+}
+
 /* Shop Now Button - Gold by default, darker gold on hover */
 .shop-now-btn {
   background: linear-gradient(to right, #C9A962, #A68B4B, #C9A962) !important;

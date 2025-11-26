@@ -54,12 +54,17 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       whileHover={{ y: -8 }}
-      className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 flex flex-col h-full border border-white/50 hover:border-champagne-gold/20"
+      className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-white/50 hover:border-champagne-gold/20"
       {...swipeHandlers}
     >
-      {/* Image Container - Larger Height */}
+      {/* Image Container - Varied Heights for Masonry Effect */}
       <div
-        className="relative h-96 md:h-[28rem] w-full overflow-hidden flex-shrink-0 touch-none"
+        className={`relative w-full overflow-hidden flex-shrink-0 touch-none ${
+          index % 4 === 0 ? "h-80 md:h-[24rem]" : // Shorter
+          index % 4 === 1 ? "h-[28rem] md:h-[32rem]" : // Taller
+          index % 4 === 2 ? "h-72 md:h-[22rem]" : // Shortest
+          "h-[32rem] md:h-[36rem]" // Tallest
+        }`}
         onMouseEnter={() => setImageHovered(true)}
         onMouseLeave={() => setImageHovered(false)}
       >
@@ -150,135 +155,121 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
         )}
       </div>
 
-      {/* Content - Flex grow to fill space */}
-      <div className="p-5 md:p-6 flex flex-col flex-grow">
-        {/* Tagline - Allow full text */}
-        <div className="mb-1.5 flex items-center min-h-[24px]">
-          <p className="font-accent text-base italic text-champagne-gold-dark">
+      {/* Content - Varied padding for more visual interest */}
+      <div className={`${
+        index % 3 === 0 ? "p-4 md:p-5" : // Standard
+        index % 3 === 1 ? "p-5 md:p-6" : // More padding
+        "p-3 md:p-4" // Less padding
+      }`}>
+        {/* Tagline */}
+        {sponsor.tagline && (
+          <p className="font-accent text-sm italic text-champagne-gold-dark mb-1">
             {sponsor.tagline}
           </p>
+        )}
+
+        {/* Name */}
+        <h3 className="font-display text-xl font-bold text-wine-burgundy mb-1">
+          {sponsor.name}
+        </h3>
+
+        {/* Region */}
+        <div className="flex items-center gap-1.5 text-neutral-slate text-xs mb-2">
+          <MapPin className="w-3 h-3 flex-shrink-0" />
+          <span>{sponsor.region}</span>
         </div>
 
-        {/* Name - Allow full text */}
-        <div className="mb-1.5 flex items-center min-h-[36px]">
-          <h3 className="font-display text-2xl font-bold text-wine-burgundy">
-            {sponsor.name}
-          </h3>
-        </div>
+        {/* Description */}
+        <p className="text-neutral-charcoal text-sm leading-relaxed mb-3">
+          {sponsor.description}
+        </p>
 
-        {/* Region - Allow full text */}
-        <div className="mb-3 flex items-center min-h-[20px]">
-          <div className="flex items-center gap-1.5 text-neutral-slate text-sm">
-            <MapPin className="w-4 h-4 flex-shrink-0" />
-            <span>{sponsor.region}</span>
-          </div>
-        </div>
-
-        {/* Description - Allow full text, flexible height */}
-        <div className="mb-4 flex items-start min-h-[50px]">
-          <p className="text-neutral-charcoal text-base leading-relaxed">
-            {sponsor.description}
-          </p>
-        </div>
-
-        {/* Wine Types - Flexible height */}
-        <div className="mb-4 flex items-center min-h-[28px]">
-          <div className="flex flex-wrap gap-2">
+        {/* Wine Types */}
+        {sponsor.wineTypes.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mb-3">
             {sponsor.wineTypes.map((type) => (
               <motion.span
                 key={type}
                 whileHover={{ scale: 1.05 }}
-                className="inline-flex items-center gap-1 px-3 py-1 bg-neutral-cream rounded-full text-xs font-medium text-neutral-slate cursor-default"
+                className="inline-flex items-center gap-1 px-2 py-0.5 bg-neutral-cream rounded-full text-xs font-medium text-neutral-slate cursor-default"
               >
                 <Wine className="w-3 h-3 flex-shrink-0" />
                 {type}
               </motion.span>
             ))}
           </div>
-        </div>
+        )}
 
-        {/* Promo Box - Always reserve space, show if exists */}
-        <div className="mb-4 min-h-[70px] flex items-start">
-          {sponsor.promo.hasPromo ? (
-            <div className="w-full p-3 bg-champagne-gold/10 border border-champagne-gold/30 rounded-xl">
-              {sponsor.promo.code && (
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-xs font-medium text-neutral-slate uppercase tracking-wide">
-                    Promo Code
-                  </span>
-                  <button
-                    onClick={() => copyCode(sponsor.promo.code!)}
-                    onMouseDown={handleRipple}
-                    className="relative flex items-center gap-1 text-xs text-champagne-gold-dark hover:text-wine-burgundy transition-colors overflow-hidden rounded px-2 py-1"
-                  >
-                    {ripple && (
-                      <motion.span
-                        className="absolute rounded-full bg-champagne-gold/30"
-                        initial={{ width: 0, height: 0, x: ripple.x, y: ripple.y }}
-                        animate={{ width: 200, height: 200, x: ripple.x - 100, y: ripple.y - 100 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.6 }}
-                      />
-                    )}
-                    <span className="relative z-10 flex items-center gap-1">
-                      {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
-                      {copied ? "Copied!" : "Copy"}
-                    </span>
-                  </button>
-                </div>
-              )}
-              {sponsor.promo.code && (
-                <p className="font-mono text-lg font-bold text-wine-burgundy mb-1.5">
-                  {sponsor.promo.code}
-                </p>
-              )}
-              {sponsor.promo.text && (
-                <p className="text-sm text-neutral-charcoal">
-                  {sponsor.promo.text}
-                </p>
-              )}
-            </div>
-          ) : (
-            <div className="w-full" />
-          )}
-        </div>
-
-        {/* Perks - Always reserve space, show if exists */}
-        <div className="mb-4 min-h-[50px] flex items-start">
-          {sponsor.includedPerks && sponsor.includedPerks.length > 0 ? (
-            <ul className="w-full space-y-1">
-              {sponsor.includedPerks.map((perk) => (
-                <motion.li
-                  key={perk}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  className="text-sm text-neutral-slate flex items-center gap-2"
+        {/* Promo Box - Only show if exists */}
+        {sponsor.promo.hasPromo && (
+          <div className="mb-3 p-2.5 bg-champagne-gold/10 border border-champagne-gold/30 rounded-lg">
+            {sponsor.promo.code && (
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-xs font-medium text-neutral-slate uppercase tracking-wide">
+                  Promo Code
+                </span>
+                <button
+                  onClick={() => copyCode(sponsor.promo.code!)}
+                  onMouseDown={handleRipple}
+                  className="relative flex items-center gap-1 text-xs text-champagne-gold-dark hover:text-wine-burgundy transition-colors overflow-hidden rounded px-2 py-0.5"
                 >
-                  <span className="text-champagne-gold flex-shrink-0">✦</span>
-                  <span>{perk}</span>
-                </motion.li>
-              ))}
-            </ul>
-          ) : (
-            <div className="w-full" />
-          )}
-        </div>
+                  {ripple && (
+                    <motion.span
+                      className="absolute rounded-full bg-champagne-gold/30"
+                      initial={{ width: 0, height: 0, x: ripple.x, y: ripple.y }}
+                      animate={{ width: 200, height: 200, x: ripple.x - 100, y: ripple.y - 100 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.6 }}
+                    />
+                  )}
+                  <span className="relative z-10 flex items-center gap-1">
+                    {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                    {copied ? "Copied!" : "Copy"}
+                  </span>
+                </button>
+              </div>
+            )}
+            {sponsor.promo.code && (
+              <p className="font-mono text-base font-bold text-wine-burgundy mb-1">
+                {sponsor.promo.code}
+              </p>
+            )}
+            {sponsor.promo.text && (
+              <p className="text-xs text-neutral-charcoal">
+                {sponsor.promo.text}
+              </p>
+            )}
+          </div>
+        )}
 
-        {/* Price - Always reserve space, show if exists */}
-        <div className="h-7 mb-4 flex items-center">
-          {sponsor.price ? (
-            <p className="text-2xl font-bold text-wine-burgundy">
-              {sponsor.price}
-            </p>
-          ) : (
-            <div className="w-full" />
-          )}
-        </div>
+        {/* Perks - Only show if exists */}
+        {sponsor.includedPerks && sponsor.includedPerks.length > 0 && (
+          <ul className="mb-3 space-y-0.5">
+            {sponsor.includedPerks.map((perk) => (
+              <motion.li
+                key={perk}
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                className="text-xs text-neutral-slate flex items-center gap-1.5"
+              >
+                <span className="text-champagne-gold flex-shrink-0">✦</span>
+                <span>{perk}</span>
+              </motion.li>
+            ))}
+          </ul>
+        )}
+
+        {/* Price - Only show if exists */}
+        {sponsor.price && (
+          <p className="text-xl font-bold text-wine-burgundy mb-3">
+            {sponsor.price}
+          </p>
+        )}
 
         {/* Social Links & CTA Section */}
-        <div className="mt-auto pt-1 space-y-2">
+        <div className="space-y-2">
           {/* Social Media Links - Elegant row above button - All Gold */}
           {sponsor.social && (sponsor.social.instagram || sponsor.social.facebook) && (
             <div className="flex items-center justify-center gap-3">
