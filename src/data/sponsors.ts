@@ -65,8 +65,8 @@ export const SPONSORS: Sponsor[] = [
     },
     wineTypes: ["Sparkling", "Pinot Noir", "Chardonnay"],
     images: {
-      hero: "jcb-hero.jpg",
-      alt: "jcb-alt.png",
+      hero: "jcb-alt.png",
+      alt: "jcb-hero.jpg",
       logo: "jcb-logo.png"
     }
   },
