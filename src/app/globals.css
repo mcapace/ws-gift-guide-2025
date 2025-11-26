@@ -27,16 +27,18 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Shop Now Button - Force colors with high specificity */
+/* Shop Now Button - Gold by default, darker gold on hover */
 .shop-now-btn {
-  background: linear-gradient(to right, #722F37, #5A252C, #722F37) !important;
-  color: #FFFFFF !important;
-  border: 2px solid #FFFFFF !important;
+  background: linear-gradient(to right, #C9A962, #A68B4B, #C9A962) !important;
+  color: #1C1C1C !important;
+  border: 2px solid #C9A962 !important;
+  box-shadow: 0 10px 15px -3px rgba(201, 169, 98, 0.3), 0 4px 6px -2px rgba(201, 169, 98, 0.2) !important;
 }
 
 .shop-now-btn:hover,
 .shop-now-btn[data-hovered="true"] {
-  background: linear-gradient(to right, #C9A962, #A68B4B, #C9A962) !important;
+  background: linear-gradient(to right, #A68B4B, #8B6F3A, #A68B4B) !important;
   color: #1C1C1C !important;
-  border: 2px solid #C9A962 !important;
+  border: 2px solid #A68B4B !important;
+  box-shadow: 0 20px 25px -5px rgba(201, 169, 98, 0.4), 0 10px 10px -5px rgba(201, 169, 98, 0.3) !important;
 }
