@@ -107,8 +107,8 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
           </div>
         )}
         
-        {/* Logo Overlay - Transparent background for transparent PNGs */}
-        <div className="absolute bottom-4 left-4 bg-black/20 backdrop-blur-md rounded-lg px-4 py-3 shadow-lg flex items-center justify-center">
+        {/* Logo Overlay - Fixed Size Container with better centering */}
+        <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-3 shadow-lg flex items-center justify-center">
           <div className="relative w-36 h-12 flex items-center justify-center">
             <Image
               src={`/images/logos/${sponsor.images.logo}`}
