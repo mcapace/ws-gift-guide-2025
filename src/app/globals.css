@@ -12,7 +12,7 @@
   }
 
   ::selection {
-    @apply bg-wine-burgundy/20 text-wine-burgundy;
+    @apply bg-wine-burgundy bg-opacity-20 text-wine-burgundy;
   }
 }
 
