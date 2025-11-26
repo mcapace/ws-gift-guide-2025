@@ -203,8 +203,8 @@ export const SPONSORS: Sponsor[] = [
     },
     wineTypes: ["Tequila"],
     images: {
-      hero: "LOCO ÁMBAR 1.jpg",
-      alt: "DSC00806.jpg",
+      hero: "DSC00806.jpg",
+      alt: "LOCO ÁMBAR 1.jpg",
       logo: "LocoTequila_Logo.png"
     }
   }
