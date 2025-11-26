@@ -203,9 +203,9 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
             href={sponsor.url}
             target="_blank"
             rel="noopener noreferrer sponsored"
-            className="flex items-center justify-center gap-2 w-full py-4 bg-wine-burgundy text-white rounded-xl font-semibold hover:bg-wine-burgundy-dark transition-colors"
+            className="flex items-center justify-center gap-2 w-full py-4 bg-gradient-to-r from-wine-burgundy via-wine-burgundy-dark to-wine-burgundy text-white rounded-xl font-semibold hover:from-champagne-gold hover:via-champagne-gold-dark hover:to-champagne-gold hover:text-neutral-black transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-white/20 hover:border-champagne-gold/50"
           >
-            Shop Now
+            <span className="font-bold">Shop Now</span>
             <ExternalLink className="w-4 h-4 flex-shrink-0" />
           </Link>
         </div>
