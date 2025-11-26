@@ -7,12 +7,9 @@ import { useMemo, useState, Suspense } from "react";
 import { CardSkeleton } from "@/components/ui/skeleton";
 
 export function SponsorGrid() {
-  // Filter out only Sullivan (pending copy), but show Loco Tequila placeholder
+  // Show all sponsors (including Sullivan Rutherford and Loco Tequila placeholders)
   const activeSponsors = useMemo(() => {
-    const filtered = SPONSORS.filter(
-      (s) => s.id !== "sullivan-rutherford" // Only filter out Sullivan, show Loco Tequila placeholder
-    );
-    return shuffleArray(filtered);
+    return shuffleArray(SPONSORS);
   }, []);
 
   return (
