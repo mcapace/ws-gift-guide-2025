@@ -41,15 +41,15 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         
-        {/* Logo Overlay - Fixed Size Container */}
-        <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-3 shadow-lg">
-          <div className="relative w-32 h-10">
+        {/* Logo Overlay - Fixed Size Container with better centering */}
+        <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-3 shadow-lg flex items-center justify-center">
+          <div className="relative w-36 h-12 flex items-center justify-center">
             <Image
               src={`/images/logos/${sponsor.images.logo}`}
               alt={`${sponsor.name} logo`}
               fill
-              className="object-contain object-left"
-              sizes="128px"
+              className="object-contain object-center"
+              sizes="144px"
             />
           </div>
         </div>
