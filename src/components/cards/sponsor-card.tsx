@@ -86,8 +86,12 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
             src={`/images/sponsors/${sponsor.images.alt}`}
             alt={`${sponsor.name} product`}
             fill
-            className={`absolute inset-0 object-cover transition-opacity duration-500 ${
+            className={`absolute inset-0 transition-opacity duration-500 ${
               shouldShowAlt ? "opacity-100" : "opacity-0"
+            } ${
+              sponsor.id === "sullivan-rutherford" 
+                ? "object-contain" 
+                : "object-cover"
             }`}
             loading="lazy"
           />
