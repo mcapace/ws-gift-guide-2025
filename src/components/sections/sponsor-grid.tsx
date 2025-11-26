@@ -30,10 +30,10 @@ export function SponsorGrid() {
         {/* Introductory Blurb */}
         <div className="max-w-4xl mx-auto mb-16 text-center">
           <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-champagne-gold/20 shadow-sm">
-            <p className="font-body text-lg md:text-xl text-neutral-charcoal leading-relaxed mb-4">
+            <p className="font-body text-base md:text-lg text-neutral-charcoal leading-relaxed mb-4">
               This holiday season, give the gift of exceptional wine and spirits. We've partnered with some of the world's most celebrated wineries and distilleries to bring you exclusive offers on premium selections, limited editions, and curated gift sets.
             </p>
-            <p className="font-body text-base md:text-lg text-neutral-slate leading-relaxed">
+            <p className="font-body text-base md:text-lg text-neutral-charcoal leading-relaxed">
               From Napa Valley Cabernets to Willamette Valley Pinot Noirs, and from artisanal spirits to rare vintages, discover the perfect bottle or collection for your loved ones. Each partner offers special promotions, complimentary tastings, and beautifully packaged gift options to make your holiday shopping effortless.
             </p>
           </div>
