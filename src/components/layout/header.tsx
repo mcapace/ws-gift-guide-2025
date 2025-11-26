@@ -22,7 +22,7 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-10 left-0 right-0 z-40 transition-all duration-300 ${
+      className={`fixed top-[40px] left-0 right-0 z-40 transition-all duration-300 ${
         scrolled ? "bg-white shadow-md py-2 md:py-3" : "bg-transparent py-2 md:py-4"
       }`}
     >
