@@ -151,23 +151,23 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
       </div>
 
       {/* Content - Flex grow to fill space */}
-      <div className="p-7 flex flex-col flex-grow">
+      <div className="p-5 md:p-6 flex flex-col flex-grow">
         {/* Tagline - Allow full text */}
-        <div className="mb-2 flex items-center min-h-[28px]">
+        <div className="mb-1.5 flex items-center min-h-[24px]">
           <p className="font-accent text-base italic text-champagne-gold-dark">
             {sponsor.tagline}
           </p>
         </div>
 
         {/* Name - Allow full text */}
-        <div className="mb-2 flex items-center min-h-[40px]">
+        <div className="mb-1.5 flex items-center min-h-[36px]">
           <h3 className="font-display text-2xl font-bold text-wine-burgundy">
             {sponsor.name}
           </h3>
         </div>
 
         {/* Region - Allow full text */}
-        <div className="mb-4 flex items-center min-h-[24px]">
+        <div className="mb-3 flex items-center min-h-[20px]">
           <div className="flex items-center gap-1.5 text-neutral-slate text-sm">
             <MapPin className="w-4 h-4 flex-shrink-0" />
             <span>{sponsor.region}</span>
@@ -175,14 +175,14 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
         </div>
 
         {/* Description - Allow full text, flexible height */}
-        <div className="mb-5 flex items-start min-h-[60px]">
+        <div className="mb-4 flex items-start min-h-[50px]">
           <p className="text-neutral-charcoal text-base leading-relaxed">
             {sponsor.description}
           </p>
         </div>
 
         {/* Wine Types - Flexible height */}
-        <div className="mb-5 flex items-center min-h-[32px]">
+        <div className="mb-4 flex items-center min-h-[28px]">
           <div className="flex flex-wrap gap-2">
             {sponsor.wineTypes.map((type) => (
               <motion.span
@@ -198,11 +198,11 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
         </div>
 
         {/* Promo Box - Always reserve space, show if exists */}
-        <div className="mb-5 min-h-[80px] flex items-start">
+        <div className="mb-4 min-h-[70px] flex items-start">
           {sponsor.promo.hasPromo ? (
-            <div className="w-full p-4 bg-champagne-gold/10 border border-champagne-gold/30 rounded-xl">
+            <div className="w-full p-3 bg-champagne-gold/10 border border-champagne-gold/30 rounded-xl">
               {sponsor.promo.code && (
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center justify-between mb-1.5">
                   <span className="text-xs font-medium text-neutral-slate uppercase tracking-wide">
                     Promo Code
                   </span>
@@ -228,7 +228,7 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
                 </div>
               )}
               {sponsor.promo.code && (
-                <p className="font-mono text-lg font-bold text-wine-burgundy mb-2">
+                <p className="font-mono text-lg font-bold text-wine-burgundy mb-1.5">
                   {sponsor.promo.code}
                 </p>
               )}
@@ -244,7 +244,7 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
         </div>
 
         {/* Perks - Always reserve space, show if exists */}
-        <div className="mb-5 min-h-[60px] flex items-start">
+        <div className="mb-4 min-h-[50px] flex items-start">
           {sponsor.includedPerks && sponsor.includedPerks.length > 0 ? (
             <ul className="w-full space-y-1">
               {sponsor.includedPerks.map((perk) => (
@@ -267,7 +267,7 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
         </div>
 
         {/* Price - Always reserve space, show if exists */}
-        <div className="h-8 mb-5 flex items-center">
+        <div className="h-7 mb-4 flex items-center">
           {sponsor.price ? (
             <p className="text-2xl font-bold text-wine-burgundy">
               {sponsor.price}
@@ -278,7 +278,7 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
         </div>
 
         {/* Social Links & CTA Section */}
-        <div className="mt-auto pt-2 space-y-3">
+        <div className="mt-auto pt-1 space-y-2">
           {/* Social Media Links - Elegant row above button - All Gold */}
           {sponsor.social && (sponsor.social.instagram || sponsor.social.facebook) && (
             <div className="flex items-center justify-center gap-3">
