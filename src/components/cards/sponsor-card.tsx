@@ -29,8 +29,8 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col h-full"
     >
-      {/* Image Container - Fixed Height with Hover Swap */}
-      <div className="relative h-64 w-full overflow-hidden flex-shrink-0">
+      {/* Image Container - Larger Height */}
+      <div className="relative h-80 md:h-96 w-full overflow-hidden flex-shrink-0">
         {/* Main Hero Image */}
         <Image
           src={`/images/sponsors/${sponsor.images.hero}`}
