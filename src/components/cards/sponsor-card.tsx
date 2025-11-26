@@ -125,38 +125,6 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
           </div>
         </div>
 
-        {/* Social Media Icons - Elegant positioning - All Gold */}
-        {sponsor.social && (sponsor.social.instagram || sponsor.social.facebook) && (
-          <div className="absolute top-4 left-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            {sponsor.social.instagram && (
-              <motion.a
-                href={sponsor.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-champagne-gold/90 backdrop-blur-sm rounded-full p-2 text-neutral-black hover:bg-champagne-gold transition-colors shadow-lg"
-                aria-label={`${sponsor.name} Instagram`}
-              >
-                <Instagram className="w-4 h-4" />
-              </motion.a>
-            )}
-            {sponsor.social.facebook && (
-              <motion.a
-                href={sponsor.social.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-champagne-gold/90 backdrop-blur-sm rounded-full p-2 text-neutral-black hover:bg-champagne-gold transition-colors shadow-lg"
-                aria-label={`${sponsor.name} Facebook`}
-              >
-                <Facebook className="w-4 h-4" />
-              </motion.a>
-            )}
-          </div>
-        )}
-        
         {/* Image Indicator Dots */}
         {sponsor.images.alt && (
           <div className="absolute bottom-4 right-4 flex gap-1.5">
