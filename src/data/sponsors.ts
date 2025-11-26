@@ -8,6 +8,10 @@ export const SPONSORS: Sponsor[] = [
     region: "Alexander Valley & Napa Valley",
     description: "Give a gift that's already worth celebrating. The Two-Bottle Holiday Gift from Silver Oak pairs their 2021 Alexander Valley and 2020 Napa Valley Cabernets—aged at least four years before release so both are beautifully drinkable the moment the gift is opened.",
     url: "https://silveroak.com/products/two-bottle-holiday-gift?variant=51444891943221&utm_campaign=Wine+Spectator+Holiday+Gift+Guide&utm_source=Wine+Spectator&utm_medium=Digital+Article",
+    social: {
+      instagram: "https://instagram.com/silveroakcellars",
+      facebook: "https://facebook.com/SilverOakCellars"
+    },
     promo: {
       hasPromo: false,
       code: null,
@@ -27,6 +31,10 @@ export const SPONSORS: Sponsor[] = [
     region: "Willamette Valley, Oregon",
     description: "For over three decades, Domaine Serene has crafted iconic Pinot Noir and Chardonnay. This holiday season, explore rare, limited-edition collections and award-winning wines perfect for personal or corporate gifting.",
     url: "https://www.domaineserene.com/shop/holiday-gifting-3?utm_source=wine_spectator&utm_medium=referral&utm_campaign=ws_gift_guide_2025",
+    social: {
+      instagram: "https://instagram.com/domaineserene",
+      facebook: "https://facebook.com/SereneWine"
+    },
     promo: {
       hasPromo: false,
       code: null,
@@ -46,6 +54,10 @@ export const SPONSORS: Sponsor[] = [
     region: "Napa Valley & Burgundy",
     description: "Inspire Desire this season with wines that turn every moment into a celebration of style. Explore the JCB Collection Holiday Gift Guide and discover remarkable wines that surprise and delight.",
     url: "https://jcbcollection.com/shop/holiday-gift-guide?utm_source=winespectator&utm_medium=digital&utm_campaign=ws_holiday_gift_guide_2025",
+    social: {
+      instagram: "https://instagram.com/jcb_collection",
+      facebook: "https://facebook.com/JCBbyJeanCharlesBoisset"
+    },
     promo: {
       hasPromo: false,
       code: null,
@@ -65,6 +77,10 @@ export const SPONSORS: Sponsor[] = [
     region: "Napa Valley",
     description: "Next-generation Napa Valley Vintner John Anthony Truchard celebrates two decades of 90Pt plus wines with this spectacular Holiday presentation trio of signature Sparkling, Reserve Chardonnay, and Cabernet Sauvignon.",
     url: "https://www.johnanthonyvineyards.com/product/SpectacularTRIO2025",
+    social: {
+      instagram: "https://instagram.com/johnanthonyvineyards",
+      facebook: "https://facebook.com/JohnAnthonyVineyards"
+    },
     promo: {
       hasPromo: true,
       code: "WSGIFT",
@@ -84,6 +100,9 @@ export const SPONSORS: Sponsor[] = [
     region: "Napa Valley",
     description: "Welcoming new collectors begins with three wines that speak to the character of our estate. The 2023 Caryn Renae Sauvignon Blanc, 2022 Brothers Blend, and 2021 Jemma arrive together in our custom gift box, accompanied by a complimentary tasting for two.",
     url: "https://ellmanwine.com/pages/digital-orderform-2025",
+    social: {
+      instagram: "https://instagram.com/ellmanwine"
+    },
     price: "$575",
     promo: {
       hasPromo: true,
@@ -105,6 +124,10 @@ export const SPONSORS: Sponsor[] = [
     region: "Sonoma Coast",
     description: "Copain means friend, and our wines are made for sharing. Enjoy elegant, French-inspired wines from cool-climate vineyards this holiday season. Let's raise a glass and celebrate together.",
     url: "http://www.copainwines.com/?src=winespectatorholiday&utm_medium=referral&utm_campaign=ws-holiday-gift-guide&utm_term=webtraffic",
+    social: {
+      instagram: "https://instagram.com/copainwines",
+      facebook: "https://facebook.com/CopainWines"
+    },
     promo: {
       hasPromo: true,
       code: "WSCP15",
@@ -124,6 +147,10 @@ export const SPONSORS: Sponsor[] = [
     region: "Paso Robles",
     description: "Give with elegance and ease this holiday season by shopping our thoughtfully curated signature wine sets. Each one is beautifully packaged with an optional personalized note to your loved one.",
     url: "https://www.calcareous.com/shop-wine/holiday-gifts/",
+    social: {
+      instagram: "https://instagram.com/calcareouswine",
+      facebook: "https://facebook.com/CalcareousVineyard"
+    },
     promo: {
       hasPromo: true,
       code: null,
@@ -142,7 +169,10 @@ export const SPONSORS: Sponsor[] = [
     tagline: "Heart of Rutherford",
     region: "Rutherford, Napa Valley",
     description: "PENDING - Awaiting copy from client",
-    url: "PENDING",
+    url: "https://sullivanwine.com",
+    social: {
+      instagram: "https://instagram.com/sullivanrutherford"
+    },
     promo: {
       hasPromo: false,
       code: null,
@@ -160,7 +190,11 @@ export const SPONSORS: Sponsor[] = [
     tagline: "PENDING",
     region: "PENDING",
     description: "PENDING - Awaiting creative assets and copy from client",
-    url: "PENDING",
+    url: "https://loco-tequila.com",
+    social: {
+      instagram: "https://instagram.com/locotequilamx",
+      facebook: "https://facebook.com/LocoTequila"
+    },
     promo: {
       hasPromo: false,
       code: null,

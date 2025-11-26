@@ -5,6 +5,10 @@ export interface Sponsor {
   region: string;
   description: string;
   url: string;
+  social?: {
+    instagram?: string;
+    facebook?: string;
+  };
   promo: {
     hasPromo: boolean;
     code: string | null;

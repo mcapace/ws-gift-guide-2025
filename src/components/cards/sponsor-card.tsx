@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Wine, ExternalLink, Copy, Check } from "lucide-react";
+import { MapPin, Wine, ExternalLink, Copy, Check, Instagram, Facebook } from "lucide-react";
 import { useState } from "react";
 import { useSwipe } from "@/hooks/use-swipe";
 import type { Sponsor } from "@/types";
@@ -120,6 +120,38 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
             />
           </div>
         </div>
+
+        {/* Social Media Icons - Elegant positioning */}
+        {sponsor.social && (sponsor.social.instagram || sponsor.social.facebook) && (
+          <div className="absolute top-4 left-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            {sponsor.social.instagram && (
+              <motion.a
+                href={sponsor.social.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-black/60 backdrop-blur-sm rounded-full p-2 text-white hover:bg-black/80 transition-colors"
+                aria-label={`${sponsor.name} Instagram`}
+              >
+                <Instagram className="w-4 h-4" />
+              </motion.a>
+            )}
+            {sponsor.social.facebook && (
+              <motion.a
+                href={sponsor.social.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-black/60 backdrop-blur-sm rounded-full p-2 text-white hover:bg-black/80 transition-colors"
+                aria-label={`${sponsor.name} Facebook`}
+              >
+                <Facebook className="w-4 h-4" />
+              </motion.a>
+            )}
+          </div>
+        )}
         
         {/* Image Indicator Dots */}
         {sponsor.images.alt && (
@@ -273,8 +305,52 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
           )}
         </div>
 
-        {/* CTA - Festive Red/Gold/White */}
-        <div className="mt-auto pt-2">
+        {/* Social Links & CTA Section */}
+        <div className="mt-auto pt-2 space-y-3">
+          {/* Social Media Links - Elegant row above button */}
+          {sponsor.social && (sponsor.social.instagram || sponsor.social.facebook) && (
+            <div className="flex items-center justify-center gap-3">
+              {sponsor.social.instagram && (
+                <motion.a
+                  href={sponsor.social.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 text-white hover:shadow-lg transition-shadow"
+                  aria-label={`${sponsor.name} Instagram`}
+                >
+                  <Instagram className="w-5 h-5" />
+                </motion.a>
+              )}
+              {sponsor.social.facebook && (
+                <motion.a
+                  href={sponsor.social.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg transition-all"
+                  aria-label={`${sponsor.name} Facebook`}
+                >
+                  <Facebook className="w-5 h-5" />
+                </motion.a>
+              )}
+              <motion.a
+                href={sponsor.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-wine-burgundy text-white hover:bg-wine-burgundy-dark hover:shadow-lg transition-all"
+                aria-label={`${sponsor.name} Website`}
+              >
+                <ExternalLink className="w-5 h-5" />
+              </motion.a>
+            </div>
+          )}
+
+          {/* CTA - Festive Red/Gold/White */}
           <motion.a
             href={sponsor.url}
             target="_blank"
