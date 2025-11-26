@@ -22,8 +22,8 @@ export function SponsorGrid() {
           </p>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        {/* Grid - Equal height cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 auto-rows-fr">
           {activeSponsors.map((sponsor, index) => (
             <SponsorCard key={sponsor.id} sponsor={sponsor} index={index} />
           ))}
