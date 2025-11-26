@@ -19,6 +19,7 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
   const [ripple, setRipple] = useState<{ x: number; y: number } | null>(null);
   const [showAltImage, setShowAltImage] = useState(false);
   const [buttonHovered, setButtonHovered] = useState(false);
+  const [imageHovered, setImageHovered] = useState(false);
 
   const swipeHandlers = useSwipe({
     onSwipeLeft: () => {
@@ -44,6 +45,8 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
     setTimeout(() => setRipple(null), 600);
   };
 
+  const shouldShowAlt = showAltImage || imageHovered;
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 40 }}
@@ -55,7 +58,11 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
       {...swipeHandlers}
     >
       {/* Image Container - Larger Height */}
-      <div className="relative h-80 md:h-96 w-full overflow-hidden flex-shrink-0 touch-none">
+      <div
+        className="relative h-80 md:h-96 w-full overflow-hidden flex-shrink-0 touch-none"
+        onMouseEnter={() => setImageHovered(true)}
+        onMouseLeave={() => setImageHovered(false)}
+      >
         {/* Loading Skeleton */}
         {!imageLoaded && (
           <div className="absolute inset-0 bg-neutral-charcoal/20 animate-pulse" />
@@ -67,8 +74,8 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
           alt={sponsor.name}
           fill
           className={`object-cover transition-opacity duration-500 ${
-            showAltImage ? "opacity-0" : "group-hover:opacity-0"
-          } ${imageLoaded ? "opacity-100" : "opacity-0"}`}
+            shouldShowAlt ? "opacity-0" : "opacity-100"
+          }`}
           onLoad={() => setImageLoaded(true)}
           loading="lazy"
         />
@@ -80,7 +87,7 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
             alt={`${sponsor.name} product`}
             fill
             className={`absolute inset-0 object-cover transition-opacity duration-500 ${
-              showAltImage ? "opacity-100" : "group-hover:opacity-100"
+              shouldShowAlt ? "opacity-100" : "opacity-0"
             }`}
             loading="lazy"
           />
@@ -91,7 +98,9 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
         
         {/* Hover Hint */}
         {sponsor.images.alt && (
-          <div className="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className={`absolute top-4 left-4 transition-opacity duration-300 ${
+            imageHovered ? "opacity-100" : "opacity-0"
+          }`}>
             <span className="text-xs text-white/80 bg-black/40 px-2 py-1 rounded backdrop-blur-sm">
               Hover to see product
             </span>
@@ -115,8 +124,12 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
         {/* Image Indicator Dots */}
         {sponsor.images.alt && (
           <div className="absolute bottom-4 right-4 flex gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-white group-hover:bg-white/50 transition-colors" />
-            <span className="w-2 h-2 rounded-full bg-white/50 group-hover:bg-white transition-colors" />
+            <span className={`w-2 h-2 rounded-full transition-colors ${
+              shouldShowAlt ? "bg-white/50" : "bg-white"
+            }`} />
+            <span className={`w-2 h-2 rounded-full transition-colors ${
+              shouldShowAlt ? "bg-white" : "bg-white/50"
+            }`} />
           </div>
         )}
         
