@@ -1,113 +1,122 @@
 "use client";
 
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { ExternalLink, Tag, MapPin, Wine } from "lucide-react";
+import { MapPin, Wine, ExternalLink, Copy, Check } from "lucide-react";
+import { useState } from "react";
 import type { Sponsor } from "@/types";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 
 interface SponsorCardProps {
   sponsor: Sponsor;
-  index?: number;
+  index: number;
 }
 
-export function SponsorCard({ sponsor, index = 0 }: SponsorCardProps) {
-  const hasPromo = sponsor.promo.hasPromo || sponsor.promo.text;
-  const hasCode = sponsor.promo.code;
+export function SponsorCard({ sponsor, index }: SponsorCardProps) {
+  const [copied, setCopied] = useState(false);
+
+  const copyCode = (code: string) => {
+    navigator.clipboard.writeText(code);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group relative flex flex-col overflow-hidden rounded-lg bg-white shadow-sm transition-shadow hover:shadow-lg"
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
     >
-      {/* Hero Image */}
-      <div className="relative h-64 w-full overflow-hidden bg-neutral-charcoal">
+      {/* Image Container */}
+      <div className="relative aspect-[16/10] overflow-hidden">
         <Image
           src={`/images/sponsors/${sponsor.images.hero}`}
           alt={sponsor.name}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-neutral-black/60 to-transparent" />
+        
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         
         {/* Logo Overlay */}
-        <div className="absolute bottom-4 left-4 right-4">
-          <div className="relative h-12 w-auto">
-            <Image
-              src={`/images/logos/${sponsor.images.logo}`}
-              alt={`${sponsor.name} logo`}
-              fill
-              className="object-contain object-left"
-              sizes="200px"
-            />
-          </div>
+        <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg">
+          <Image
+            src={`/images/logos/${sponsor.images.logo}`}
+            alt={`${sponsor.name} logo`}
+            width={100}
+            height={40}
+            className="h-8 w-auto object-contain"
+          />
         </div>
-
-        {/* Promo Badge */}
-        {hasPromo && (
-          <div className="absolute top-4 right-4">
-            <div className="flex items-center gap-1.5 rounded-full bg-champagne-gold px-3 py-1.5 text-xs font-semibold text-neutral-black">
-              <Tag className="h-3 w-3" />
-              <span>Special Offer</span>
-            </div>
+        
+        {/* Special Offer Badge */}
+        {sponsor.promo.hasPromo && (
+          <div className="absolute top-4 right-4 bg-champagne-gold text-neutral-black px-3 py-1.5 rounded-full text-xs font-semibold shadow-lg">
+            ✦ Special Offer
           </div>
         )}
       </div>
 
       {/* Content */}
-      <div className="flex flex-1 flex-col p-6">
+      <div className="p-7">
         {/* Tagline */}
-        <p className="mb-2 font-accent text-sm italic text-champagne-gold-dark">
+        <p className="font-accent text-lg italic text-champagne-gold-dark mb-2">
           {sponsor.tagline}
         </p>
 
         {/* Name */}
-        <h3 className="mb-2 font-display text-2xl font-bold text-wine-burgundy">
+        <h3 className="font-display text-2xl font-bold text-wine-burgundy mb-2">
           {sponsor.name}
         </h3>
 
         {/* Region */}
-        <div className="mb-3 flex items-center gap-1.5 text-sm text-neutral-slate">
-          <MapPin className="h-4 w-4" />
+        <div className="flex items-center gap-1.5 text-neutral-slate text-sm mb-4">
+          <MapPin className="w-4 h-4" />
           <span>{sponsor.region}</span>
         </div>
 
         {/* Description */}
-        <p className="mb-4 flex-1 text-sm leading-relaxed text-neutral-charcoal">
+        <p className="text-neutral-charcoal text-base leading-relaxed mb-5 line-clamp-3">
           {sponsor.description}
         </p>
 
         {/* Wine Types */}
-        <div className="mb-4 flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 mb-5">
           {sponsor.wineTypes.map((type) => (
-            <div
+            <span
               key={type}
-              className="flex items-center gap-1.5 rounded-md bg-neutral-cream px-2.5 py-1 text-xs font-medium text-neutral-slate"
+              className="inline-flex items-center gap-1 px-3 py-1 bg-neutral-cream rounded-full text-xs font-medium text-neutral-slate"
             >
-              <Wine className="h-3 w-3" />
-              <span>{type}</span>
-            </div>
+              <Wine className="w-3 h-3" />
+              {type}
+            </span>
           ))}
         </div>
 
-        {/* Promo Info */}
-        {hasPromo && (
-          <div className="mb-4 rounded-md border border-champagne-gold/30 bg-champagne-gold/10 p-3">
-            {hasCode && (
-              <div className="mb-2">
-                <p className="text-xs font-semibold uppercase tracking-wide text-neutral-slate">
+        {/* Promo Box */}
+        {sponsor.promo.hasPromo && (
+          <div className="mb-5 p-4 bg-champagne-gold/10 border border-champagne-gold/30 rounded-xl">
+            {sponsor.promo.code && (
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-medium text-neutral-slate uppercase tracking-wide">
                   Promo Code
-                </p>
-                <p className="font-mono text-base font-bold text-wine-burgundy">
-                  {sponsor.promo.code}
-                </p>
+                </span>
+                <button
+                  onClick={() => copyCode(sponsor.promo.code!)}
+                  className="flex items-center gap-1 text-xs text-champagne-gold-dark hover:text-wine-burgundy transition-colors"
+                >
+                  {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                  {copied ? "Copied!" : "Copy"}
+                </button>
               </div>
+            )}
+            {sponsor.promo.code && (
+              <p className="font-mono text-lg font-bold text-wine-burgundy mb-2">
+                {sponsor.promo.code}
+              </p>
             )}
             {sponsor.promo.text && (
               <p className="text-sm text-neutral-charcoal">
@@ -117,51 +126,36 @@ export function SponsorCard({ sponsor, index = 0 }: SponsorCardProps) {
           </div>
         )}
 
-        {/* Included Perks */}
-        {sponsor.includedPerks && sponsor.includedPerks.length > 0 && (
-          <div className="mb-4">
-            <ul className="space-y-1.5">
-              {sponsor.includedPerks.map((perk, idx) => (
-                <li
-                  key={idx}
-                  className="flex items-start gap-2 text-xs text-neutral-slate"
-                >
-                  <span className="mt-1 h-1.5 w-1.5 rounded-full bg-champagne-gold" />
-                  <span>{perk}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+        {/* Perks */}
+        {sponsor.includedPerks && (
+          <ul className="mb-5 space-y-1">
+            {sponsor.includedPerks.map((perk) => (
+              <li key={perk} className="text-sm text-neutral-slate flex items-center gap-2">
+                <span className="text-champagne-gold">✦</span>
+                {perk}
+              </li>
+            ))}
+          </ul>
         )}
 
         {/* Price */}
         {sponsor.price && (
-          <div className="mb-4">
-            <p className="font-display text-xl font-bold text-wine-burgundy">
-              {sponsor.price}
-            </p>
-          </div>
+          <p className="text-2xl font-bold text-wine-burgundy mb-5">
+            {sponsor.price}
+          </p>
         )}
 
-        {/* CTA Button */}
-        <Button
-          asChild
-          variant="primary"
-          size="md"
-          className="w-full"
+        {/* CTA */}
+        <Link
+          href={sponsor.url}
+          target="_blank"
+          rel="noopener noreferrer sponsored"
+          className="flex items-center justify-center gap-2 w-full py-4 bg-wine-burgundy text-white rounded-xl font-semibold hover:bg-wine-burgundy-dark transition-colors"
         >
-          <Link
-            href={sponsor.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2"
-          >
-            <span>Shop Now</span>
-            <ExternalLink className="h-4 w-4" />
-          </Link>
-        </Button>
+          Shop Now
+          <ExternalLink className="w-4 h-4" />
+        </Link>
       </div>
     </motion.article>
   );
 }
-
