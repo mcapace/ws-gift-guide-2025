@@ -18,7 +18,6 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [ripple, setRipple] = useState<{ x: number; y: number } | null>(null);
   const [showAltImage, setShowAltImage] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
 
   const swipeHandlers = useSwipe({
     onSwipeLeft: () => {
@@ -260,29 +259,20 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
           )}
         </div>
 
-        {/* CTA - Always at bottom with consistent spacing - Festive Red/Gold/White */}
+        {/* CTA - Festive Red/Gold/White with CSS custom properties */}
         <div className="mt-auto pt-2">
           <Link
             href={sponsor.url}
             target="_blank"
             rel="noopener noreferrer sponsored"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            className="relative flex items-center justify-center gap-2 w-full py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl border-2 overflow-hidden group"
-            style={{
-              background: isHovered
-                ? "linear-gradient(to right, #C9A962, #A68B4B, #C9A962)"
-                : "linear-gradient(to right, #722F37, #5A252C, #722F37)",
-              color: isHovered ? "#1C1C1C" : "#FFFFFF",
-              borderColor: isHovered ? "#C9A962" : "#FFFFFF",
-            }}
+            className="shop-now-button relative flex items-center justify-center gap-2 w-full py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl border-2 overflow-hidden group"
           >
             {/* Shimmer effect */}
             <motion.span
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
               initial={{ x: "-100%" }}
-              animate={isHovered ? { x: "200%" } : { x: "-100%" }}
-              transition={{ duration: 0.8, repeat: isHovered ? Infinity : 0, repeatDelay: 2 }}
+              whileHover={{ x: "200%" }}
+              transition={{ duration: 0.8, repeat: Infinity, repeatDelay: 2 }}
             />
             <span className="relative z-10 font-bold flex items-center gap-2">
               Shop Now
