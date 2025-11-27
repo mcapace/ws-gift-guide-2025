@@ -171,7 +171,7 @@ export const SPONSORS: Sponsor[] = [
     description: "Discover the 2021 Coeur de Vigne from Sullivan Rutherford Estate, an elegant, Old-World–inspired wine with savory depth, minerality, and refined structure. A versatile Napa Valley classic to enjoy now or cellar for years to come. Order by 12/19 for delivery by Christmas with shipping included.",
     url: "https://sullivanwine.com/product/2021-coeur-de-vigne?utm_source=wine-spectator&utm_medium=referral&utm_campaign=holiday-co-op",
     social: {
-      instagram: "https://instagram.com/sullivanrutherford"
+      instagram: "https://www.instagram.com/sullivan.rutherford.estate?igsh=NTc4MTIwNjQ2YQ=="
     },
     promo: {
       hasPromo: true,
@@ -193,7 +193,7 @@ export const SPONSORS: Sponsor[] = [
     description: "Complex, sophisticated and agave forward, Loco Ámbar is a masterful blend of four rare casks aged 6-13 months. Enjoy as a sipping spirit, alone or paired with a wide range of grilled foods and with chocolate or caramel desserts. Use code \"LOCOWS\" for complimentary 2-day shipping, exp 12/31/25.",
     url: "https://store.loco-tequila.com/products/loco-ambar-reposado?utm_source=wine-spectator&utm_medium=referral&utm_campaign=holiday-co-op",
     social: {
-      instagram: "https://instagram.com/locotequilamx",
+      instagram: "https://www.instagram.com/locotequilausa",
       facebook: "https://facebook.com/LocoTequila"
     },
     promo: {
