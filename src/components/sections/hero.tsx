@@ -12,7 +12,8 @@ const videos = [
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const videoRefs = [useRef<HTMLVideoElement>(null), useRef<HTMLVideoElement>(null)];
+  const videoRef0 = useRef<HTMLVideoElement>(null);
+  const videoRef1 = useRef<HTMLVideoElement>(null);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   
   const { scrollYProgress } = useScroll({
@@ -29,18 +30,23 @@ export function Hero() {
   };
 
   // Handle video end and switch to next video
-  const handleVideoEnd = (index: number) => {
-    const nextIndex = (index + 1) % videos.length;
-    const currentVideo = videoRefs[index].current;
-    const nextVideo = videoRefs[nextIndex].current;
+  const handleVideoEnd = () => {
+    const nextIndex = (currentVideoIndex + 1) % videos.length;
+    const currentVideo = currentVideoIndex === 0 ? videoRef0.current : videoRef1.current;
+    const nextVideo = nextIndex === 0 ? videoRef0.current : videoRef1.current;
     
+    // Hide current video
     if (currentVideo) {
-      currentVideo.style.display = 'none';
+      currentVideo.pause();
+      currentVideo.style.opacity = '0';
+      currentVideo.style.pointerEvents = 'none';
     }
     
+    // Show and play next video
     if (nextVideo) {
-      nextVideo.style.display = 'block';
       nextVideo.currentTime = 0;
+      nextVideo.style.opacity = '1';
+      nextVideo.style.pointerEvents = 'auto';
       nextVideo.play().catch((error) => {
         console.error("Error playing next video:", error);
       });
@@ -49,22 +55,14 @@ export function Hero() {
     setCurrentVideoIndex(nextIndex);
   };
 
-  // Initialize videos on mount
+  // Preload both videos on mount
   useEffect(() => {
-    videoRefs.forEach((ref, index) => {
-      if (ref.current) {
-        ref.current.load();
-        if (index === 0) {
-          // Play first video
-          ref.current.play().catch((error) => {
-            console.error("Error playing initial video:", error);
-          });
-        } else {
-          // Hide other videos
-          ref.current.style.display = 'none';
-        }
-      }
-    });
+    if (videoRef0.current) {
+      videoRef0.current.load();
+    }
+    if (videoRef1.current) {
+      videoRef1.current.load();
+    }
   }, []);
 
   return (
@@ -74,30 +72,33 @@ export function Hero() {
         style={{ scale: useTransform(scrollYProgress, [0, 1], [1, 1.1]) }}
         className="absolute inset-0"
       >
-        {videos.map((videoSrc, index) => (
-          <video
-            key={videoSrc}
-            ref={videoRefs[index]}
-            muted
-            playsInline
-            onEnded={() => handleVideoEnd(index)}
-            onError={(e) => {
-              console.error(`Video ${index} error:`, e, videoSrc);
-            }}
-            onLoadedData={() => {
-              // Ensure video plays when loaded (only for first video initially)
-              if (index === 0 && videoRefs[0].current) {
-                videoRefs[0].current.play().catch((error) => {
-                  console.error("Error playing video:", error);
-                });
-              }
-            }}
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{ display: index === 0 ? 'block' : 'none' }}
-          >
-            <source src={videoSrc} type="video/mp4" />
-          </video>
-        ))}
+        <video
+          ref={videoRef0}
+          muted
+          playsInline
+          autoPlay
+          onEnded={handleVideoEnd}
+          onError={(e) => {
+            console.error("Video 0 error:", e);
+          }}
+          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+          style={{ opacity: currentVideoIndex === 0 ? 1 : 0, zIndex: currentVideoIndex === 0 ? 1 : 0 }}
+        >
+          <source src={videos[0]} type="video/mp4" />
+        </video>
+        <video
+          ref={videoRef1}
+          muted
+          playsInline
+          onEnded={handleVideoEnd}
+          onError={(e) => {
+            console.error("Video 1 error:", e);
+          }}
+          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+          style={{ opacity: currentVideoIndex === 1 ? 1 : 0, zIndex: currentVideoIndex === 1 ? 1 : 0 }}
+        >
+          <source src={videos[1]} type="video/mp4" />
+        </video>
       </motion.div>
 
       {/* Dark Overlay */}
