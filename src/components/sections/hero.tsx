@@ -6,14 +6,18 @@ import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 
 const videos = [
-  "/videos/hero-video.mp4",
-  "/videos/AdobeStock_286990778.mp4"
+  "/videos/hero-video.mp4",                    // Wine video
+  "/videos/AdobeStock_286990778.mp4",          // Tequila video
+  "/videos/AdobeStock_1776797351.mp4",         // Champagne video
+  "/videos/AdobeStock_1071056087.mp4"          // Tequila video
 ];
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef0 = useRef<HTMLVideoElement>(null);
   const videoRef1 = useRef<HTMLVideoElement>(null);
+  const videoRef2 = useRef<HTMLVideoElement>(null);
+  const videoRef3 = useRef<HTMLVideoElement>(null);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   
   const { scrollYProgress } = useScroll({
@@ -29,11 +33,22 @@ export function Hero() {
     document.getElementById("sponsors")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  // Get video ref by index
+  const getVideoRef = (index: number) => {
+    switch (index) {
+      case 0: return videoRef0.current;
+      case 1: return videoRef1.current;
+      case 2: return videoRef2.current;
+      case 3: return videoRef3.current;
+      default: return null;
+    }
+  };
+
   // Handle video end and switch to next video
   const handleVideoEnd = () => {
     const nextIndex = (currentVideoIndex + 1) % videos.length;
-    const currentVideo = currentVideoIndex === 0 ? videoRef0.current : videoRef1.current;
-    const nextVideo = nextIndex === 0 ? videoRef0.current : videoRef1.current;
+    const currentVideo = getVideoRef(currentVideoIndex);
+    const nextVideo = getVideoRef(nextIndex);
     
     // Hide current video
     if (currentVideo) {
@@ -55,14 +70,13 @@ export function Hero() {
     setCurrentVideoIndex(nextIndex);
   };
 
-  // Preload both videos on mount
+  // Preload all videos on mount
   useEffect(() => {
-    if (videoRef0.current) {
-      videoRef0.current.load();
-    }
-    if (videoRef1.current) {
-      videoRef1.current.load();
-    }
+    [videoRef0, videoRef1, videoRef2, videoRef3].forEach((ref) => {
+      if (ref.current) {
+        ref.current.load();
+      }
+    });
   }, []);
 
   return (
@@ -98,6 +112,32 @@ export function Hero() {
           style={{ opacity: currentVideoIndex === 1 ? 1 : 0, zIndex: currentVideoIndex === 1 ? 1 : 0 }}
         >
           <source src={videos[1]} type="video/mp4" />
+        </video>
+        <video
+          ref={videoRef2}
+          muted
+          playsInline
+          onEnded={handleVideoEnd}
+          onError={(e) => {
+            console.error("Video 2 error:", e);
+          }}
+          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+          style={{ opacity: currentVideoIndex === 2 ? 1 : 0, zIndex: currentVideoIndex === 2 ? 1 : 0 }}
+        >
+          <source src={videos[2]} type="video/mp4" />
+        </video>
+        <video
+          ref={videoRef3}
+          muted
+          playsInline
+          onEnded={handleVideoEnd}
+          onError={(e) => {
+            console.error("Video 3 error:", e);
+          }}
+          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+          style={{ opacity: currentVideoIndex === 3 ? 1 : 0, zIndex: currentVideoIndex === 3 ? 1 : 0 }}
+        >
+          <source src={videos[3]} type="video/mp4" />
         </video>
       </motion.div>
 
