@@ -30,18 +30,9 @@ export function Hero() {
 
   // Handle video end and switch to next video
   const handleVideoEnd = () => {
-    setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videos.length);
+    const nextIndex = (currentVideoIndex + 1) % videos.length;
+    setCurrentVideoIndex(nextIndex);
   };
-
-  // Update video source when index changes
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.load();
-      videoRef.current.play().catch((error) => {
-        console.error("Error playing video:", error);
-      });
-    }
-  }, [currentVideoIndex]);
 
   return (
     <section ref={containerRef} className="relative h-screen w-full overflow-hidden">
@@ -51,11 +42,27 @@ export function Hero() {
         className="absolute inset-0"
       >
         <video
+          key={videos[currentVideoIndex]}
           ref={videoRef}
           autoPlay
           muted
           playsInline
           onEnded={handleVideoEnd}
+          onError={(e) => {
+            console.error("Video error:", e);
+            // If video fails to load, try next one after a short delay
+            setTimeout(() => {
+              handleVideoEnd();
+            }, 1000);
+          }}
+          onLoadedData={() => {
+            // Ensure video plays when loaded
+            if (videoRef.current) {
+              videoRef.current.play().catch((error) => {
+                console.error("Error playing video:", error);
+              });
+            }
+          }}
           className="absolute inset-0 w-full h-full object-cover"
         >
           <source src={videos[currentVideoIndex]} type="video/mp4" />
