@@ -102,7 +102,7 @@ export function Hero() {
       </motion.div>
 
       {/* Dark Overlay - Enhanced for better text legibility */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80 z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/45 to-black/75 z-10" />
 
       {/* Content with Parallax */}
       <motion.div
