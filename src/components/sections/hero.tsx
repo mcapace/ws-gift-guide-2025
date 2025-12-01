@@ -1,12 +1,20 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 
+const videos = [
+  "/videos/hero-video.mp4",
+  "/videos/AdobeStock_286990778.mp4"
+];
+
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
@@ -20,6 +28,21 @@ export function Hero() {
     document.getElementById("sponsors")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  // Handle video end and switch to next video
+  const handleVideoEnd = () => {
+    setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videos.length);
+  };
+
+  // Update video source when index changes
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.load();
+      videoRef.current.play().catch((error) => {
+        console.error("Error playing video:", error);
+      });
+    }
+  }, [currentVideoIndex]);
+
   return (
     <section ref={containerRef} className="relative h-screen w-full overflow-hidden">
       {/* Video Background with Parallax */}
@@ -28,13 +51,14 @@ export function Hero() {
         className="absolute inset-0"
       >
         <video
+          ref={videoRef}
           autoPlay
-          loop
           muted
           playsInline
+          onEnded={handleVideoEnd}
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/videos/hero-video.mp4" type="video/mp4" />
+          <source src={videos[currentVideoIndex]} type="video/mp4" />
         </video>
       </motion.div>
 
