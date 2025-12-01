@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Wine, ExternalLink, Copy, Check, Instagram, Facebook } from "lucide-react";
+import { MapPin, Wine, ExternalLink, Copy, Check, Instagram, Facebook, GlassWater } from "lucide-react";
 import { useState } from "react";
 import { useSwipe } from "@/hooks/use-swipe";
 import type { Sponsor } from "@/types";
@@ -187,16 +187,51 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
         {/* Wine Types */}
         {sponsor.wineTypes.length > 0 && (
           <div className="flex flex-wrap gap-1.5 mb-3">
-            {sponsor.wineTypes.map((type) => (
-              <motion.span
-                key={type}
-                whileHover={{ scale: 1.05 }}
-                className="inline-flex items-center gap-1 px-2 py-0.5 bg-neutral-cream rounded-full text-xs font-medium text-neutral-slate cursor-default"
-              >
-                <Wine className="w-3 h-3 flex-shrink-0" />
-                {type}
-              </motion.span>
-            ))}
+            {sponsor.wineTypes.map((type) => {
+              // Color coding based on wine type
+              const isTequila = type.toLowerCase().includes("tequila");
+              const isRed = ["cabernet sauvignon", "pinot noir", "syrah", "red blend"].some(red => type.toLowerCase().includes(red));
+              const isWhite = ["chardonnay", "sauvignon blanc", "white blend"].some(white => type.toLowerCase().includes(white));
+              const isSparkling = type.toLowerCase().includes("sparkling");
+              
+              // Determine background color
+              let bgColor = "bg-neutral-cream";
+              let textColor = "text-neutral-slate";
+              let iconColor = "text-neutral-slate";
+              
+              if (isTequila) {
+                bgColor = "bg-amber-100";
+                textColor = "text-amber-800";
+                iconColor = "text-amber-700";
+              } else if (isRed) {
+                bgColor = "bg-red-50";
+                textColor = "text-red-800";
+                iconColor = "text-red-700";
+              } else if (isWhite) {
+                bgColor = "bg-yellow-50";
+                textColor = "text-yellow-800";
+                iconColor = "text-yellow-700";
+              } else if (isSparkling) {
+                bgColor = "bg-champagne-gold/20";
+                textColor = "text-champagne-gold-dark";
+                iconColor = "text-champagne-gold-dark";
+              }
+              
+              return (
+                <motion.span
+                  key={type}
+                  whileHover={{ scale: 1.05 }}
+                  className={`inline-flex items-center gap-1 px-2 py-0.5 ${bgColor} rounded-full text-xs font-medium ${textColor} cursor-default`}
+                >
+                  {isTequila ? (
+                    <GlassWater className={`w-3 h-3 flex-shrink-0 ${iconColor}`} />
+                  ) : (
+                    <Wine className={`w-3 h-3 flex-shrink-0 ${iconColor}`} />
+                  )}
+                  {type}
+                </motion.span>
+              );
+            })}
           </div>
         )}
 
