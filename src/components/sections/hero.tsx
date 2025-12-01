@@ -8,7 +8,7 @@ import { ChevronDown } from "lucide-react";
 const videos = [
   "/videos/hero-video.mp4",                    // Wine video
   "/videos/AdobeStock_286990778.mp4",          // Tequila video
-  "/videos/AdobeStock_1776797351.mp4",         // Champagne video
+  "/videos/AdobeStock_1737935567.mp4",         // Champagne video
   "/videos/AdobeStock_1071056087.mp4"          // Tequila video
 ];
 
