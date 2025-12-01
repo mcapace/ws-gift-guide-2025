@@ -40,7 +40,7 @@ export const SPONSORS: Sponsor[] = [
       code: null,
       text: null
     },
-    wineTypes: ["Pinot Noir", "Chardonnay"],
+    wineTypes: ["Sparkling", "Pinot Noir", "Chardonnay"],
     images: {
       hero: "domaine-serene-alt.jpg",
       alt: "domaine-serene-hero.jpg",
