@@ -12,7 +12,7 @@ const videos = [
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoRefs = [useRef<HTMLVideoElement>(null), useRef<HTMLVideoElement>(null)];
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   
   const { scrollYProgress } = useScroll({
@@ -29,10 +29,43 @@ export function Hero() {
   };
 
   // Handle video end and switch to next video
-  const handleVideoEnd = () => {
-    const nextIndex = (currentVideoIndex + 1) % videos.length;
+  const handleVideoEnd = (index: number) => {
+    const nextIndex = (index + 1) % videos.length;
+    const currentVideo = videoRefs[index].current;
+    const nextVideo = videoRefs[nextIndex].current;
+    
+    if (currentVideo) {
+      currentVideo.style.display = 'none';
+    }
+    
+    if (nextVideo) {
+      nextVideo.style.display = 'block';
+      nextVideo.currentTime = 0;
+      nextVideo.play().catch((error) => {
+        console.error("Error playing next video:", error);
+      });
+    }
+    
     setCurrentVideoIndex(nextIndex);
   };
+
+  // Initialize videos on mount
+  useEffect(() => {
+    videoRefs.forEach((ref, index) => {
+      if (ref.current) {
+        ref.current.load();
+        if (index === 0) {
+          // Play first video
+          ref.current.play().catch((error) => {
+            console.error("Error playing initial video:", error);
+          });
+        } else {
+          // Hide other videos
+          ref.current.style.display = 'none';
+        }
+      }
+    });
+  }, []);
 
   return (
     <section ref={containerRef} className="relative h-screen w-full overflow-hidden">
@@ -41,32 +74,30 @@ export function Hero() {
         style={{ scale: useTransform(scrollYProgress, [0, 1], [1, 1.1]) }}
         className="absolute inset-0"
       >
-        <video
-          key={videos[currentVideoIndex]}
-          ref={videoRef}
-          autoPlay
-          muted
-          playsInline
-          onEnded={handleVideoEnd}
-          onError={(e) => {
-            console.error("Video error:", e);
-            // If video fails to load, try next one after a short delay
-            setTimeout(() => {
-              handleVideoEnd();
-            }, 1000);
-          }}
-          onLoadedData={() => {
-            // Ensure video plays when loaded
-            if (videoRef.current) {
-              videoRef.current.play().catch((error) => {
-                console.error("Error playing video:", error);
-              });
-            }
-          }}
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src={videos[currentVideoIndex]} type="video/mp4" />
-        </video>
+        {videos.map((videoSrc, index) => (
+          <video
+            key={videoSrc}
+            ref={videoRefs[index]}
+            muted
+            playsInline
+            onEnded={() => handleVideoEnd(index)}
+            onError={(e) => {
+              console.error(`Video ${index} error:`, e, videoSrc);
+            }}
+            onLoadedData={() => {
+              // Ensure video plays when loaded (only for first video initially)
+              if (index === 0 && videoRefs[0].current) {
+                videoRefs[0].current.play().catch((error) => {
+                  console.error("Error playing video:", error);
+                });
+              }
+            }}
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ display: index === 0 ? 'block' : 'none' }}
+          >
+            <source src={videoSrc} type="video/mp4" />
+          </video>
+        ))}
       </motion.div>
 
       {/* Dark Overlay */}
