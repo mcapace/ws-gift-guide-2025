@@ -50,11 +50,14 @@ export function Hero() {
     const currentVideo = getVideoRef(currentVideoIndex);
     const nextVideo = getVideoRef(nextIndex);
     
+    console.log(`Switching from video ${currentVideoIndex} to ${nextIndex}`);
+    
     // Hide current video
     if (currentVideo) {
       currentVideo.pause();
       currentVideo.style.opacity = '0';
       currentVideo.style.pointerEvents = 'none';
+      currentVideo.style.zIndex = '0';
     }
     
     // Show and play next video
@@ -62,9 +65,24 @@ export function Hero() {
       nextVideo.currentTime = 0;
       nextVideo.style.opacity = '1';
       nextVideo.style.pointerEvents = 'auto';
-      nextVideo.play().catch((error) => {
-        console.error("Error playing next video:", error);
-      });
+      nextVideo.style.zIndex = '1';
+      
+      // Ensure video is loaded before playing
+      if (nextVideo.readyState >= 2) {
+        nextVideo.play().catch((error) => {
+          console.error(`Error playing video ${nextIndex}:`, error);
+        });
+      } else {
+        // Wait for video to be ready
+        const handleCanPlay = () => {
+          nextVideo.play().catch((error) => {
+            console.error(`Error playing video ${nextIndex}:`, error);
+          });
+          nextVideo.removeEventListener('canplay', handleCanPlay);
+        };
+        nextVideo.addEventListener('canplay', handleCanPlay);
+        nextVideo.load();
+      }
     }
     
     setCurrentVideoIndex(nextIndex);
@@ -72,9 +90,19 @@ export function Hero() {
 
   // Preload all videos on mount
   useEffect(() => {
-    [videoRef0, videoRef1, videoRef2, videoRef3].forEach((ref) => {
+    const refs = [videoRef0, videoRef1, videoRef2, videoRef3];
+    refs.forEach((ref, index) => {
       if (ref.current) {
         ref.current.load();
+        // Set initial styles
+        if (index === 0) {
+          ref.current.style.opacity = '1';
+          ref.current.style.zIndex = '1';
+        } else {
+          ref.current.style.opacity = '0';
+          ref.current.style.zIndex = '0';
+        }
+        ref.current.style.pointerEvents = index === 0 ? 'auto' : 'none';
       }
     });
   }, []);
@@ -91,6 +119,7 @@ export function Hero() {
           muted
           playsInline
           autoPlay
+          preload="auto"
           onEnded={handleVideoEnd}
           onError={(e) => {
             console.error("Video 0 error:", e);
@@ -104,6 +133,7 @@ export function Hero() {
           ref={videoRef1}
           muted
           playsInline
+          preload="auto"
           onEnded={handleVideoEnd}
           onError={(e) => {
             console.error("Video 1 error:", e);
@@ -117,6 +147,7 @@ export function Hero() {
           ref={videoRef2}
           muted
           playsInline
+          preload="auto"
           onEnded={handleVideoEnd}
           onError={(e) => {
             console.error("Video 2 error:", e);
@@ -130,9 +161,13 @@ export function Hero() {
           ref={videoRef3}
           muted
           playsInline
+          preload="auto"
           onEnded={handleVideoEnd}
           onError={(e) => {
-            console.error("Video 3 error:", e);
+            console.error("Video 3 error:", e, videos[3]);
+          }}
+          onLoadedData={() => {
+            console.log("Video 3 loaded:", videos[3]);
           }}
           className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
           style={{ opacity: currentVideoIndex === 3 ? 1 : 0, zIndex: currentVideoIndex === 3 ? 1 : 0 }}
