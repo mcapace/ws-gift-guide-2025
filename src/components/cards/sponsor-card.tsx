@@ -120,12 +120,12 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
         {/* Vertical panel for John Anthony (vertically-oriented logo) */}
         <div className={`absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg shadow-lg flex items-center justify-center ${
           sponsor.id === "john-anthony" 
-            ? "px-4 py-5" // Taller padding for vertical logo
+            ? "px-5 py-6" // Taller padding for vertical logo
             : "px-4 py-3"  // Standard padding
         }`}>
           <div className={`relative flex items-center justify-center ${
             sponsor.id === "john-anthony"
-              ? "w-36 h-24" // Larger container for vertical logo (144px x 96px)
+              ? "w-44 h-32" // Larger container for vertical logo (176px x 128px)
               : "w-36 h-12" // Standard container (144px x 48px)
           }`}>
             <Image
@@ -133,7 +133,7 @@ export function SponsorCard({ sponsor, index }: SponsorCardProps) {
               alt={`${sponsor.name} logo`}
               fill
               className="object-contain object-center"
-              sizes={sponsor.id === "john-anthony" ? "144px" : "144px"}
+              sizes={sponsor.id === "john-anthony" ? "176px" : "144px"}
               loading="lazy"
             />
           </div>
