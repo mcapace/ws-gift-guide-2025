@@ -148,8 +148,7 @@ export const SPONSORS: Sponsor[] = [
     description: "Give with elegance and ease this holiday season by shopping our thoughtfully curated signature wine sets. Each one is beautifully packaged with an optional personalized note to your loved one.",
     url: "https://www.calcareous.com/shop-wine/holiday-gifts/",
     social: {
-      instagram: "https://instagram.com/calcareouswine",
-      facebook: "https://facebook.com/CalcareousVineyard"
+      instagram: "https://instagram.com/calcareouswine"
     },
     promo: {
       hasPromo: true,
@@ -158,8 +157,8 @@ export const SPONSORS: Sponsor[] = [
     },
     wineTypes: ["Cabernet Sauvignon", "Syrah", "White Blend"],
     images: {
-      hero: "calcareous-hero.png",
-      alt: "calcareous-alt.png",
+      hero: "calcareous-alt.png",
+      alt: "calcareous-hero.png",
       logo: "calcareous-logo.png"
     }
   },
