@@ -14,28 +14,56 @@ export function ProofOfPurchase() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isDragging, setIsDragging] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const validateAndSetFile = (file: File) => {
+    // Validate file type
+    const validTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif", "application/pdf"];
+    if (!validTypes.includes(file.type)) {
+      setErrorMessage("Please upload a JPG, PNG, GIF, or PDF file");
+      return;
+    }
+    // Validate file size (max 10MB)
+    if (file.size > 10 * 1024 * 1024) {
+      setErrorMessage("File size must be less than 10MB");
+      return;
+    }
+    setFormData((prev) => ({ ...prev, receipt: file }));
+    setErrorMessage("");
+  };
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      // Validate file type
-      const validTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif", "application/pdf"];
-      if (!validTypes.includes(file.type)) {
-        setErrorMessage("Please upload a JPG, PNG, GIF, or PDF file");
-        return;
-      }
-      // Validate file size (max 10MB)
-      if (file.size > 10 * 1024 * 1024) {
-        setErrorMessage("File size must be less than 10MB");
-        return;
-      }
-      setFormData((prev) => ({ ...prev, receipt: file }));
-      setErrorMessage("");
+      validateAndSetFile(file);
+    }
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+
+    const file = e.dataTransfer.files?.[0];
+    if (file) {
+      validateAndSetFile(file);
     }
   };
 
@@ -200,7 +228,14 @@ export function ProofOfPurchase() {
                   />
                   <label
                     htmlFor="receipt"
-                    className="flex items-center justify-center gap-3 w-full px-4 py-6 rounded-lg border-2 border-dashed border-neutral-slate/30 hover:border-champagne-gold hover:bg-champagne-gold/5 transition-all cursor-pointer"
+                    onDragOver={handleDragOver}
+                    onDragLeave={handleDragLeave}
+                    onDrop={handleDrop}
+                    className={`flex items-center justify-center gap-3 w-full px-4 py-6 rounded-lg border-2 border-dashed transition-all cursor-pointer ${
+                      isDragging
+                        ? "border-champagne-gold bg-champagne-gold/10"
+                        : "border-neutral-slate/30 hover:border-champagne-gold hover:bg-champagne-gold/5"
+                    }`}
                   >
                     {formData.receipt ? (
                       <>
